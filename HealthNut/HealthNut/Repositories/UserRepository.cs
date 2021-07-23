@@ -9,7 +9,7 @@ using HealthNut.Utils;
 
 namespace HealthNut.Repositories
 {
-    public class UserRepository : BaseRepository
+    public class UserRepository : BaseRepository, IUserRepository
     {
         public UserRepository(IConfiguration configuration) : base(configuration) { }
 
@@ -146,6 +146,42 @@ namespace HealthNut.Repositories
                     DbUtils.AddParameter(cmd, "@Email", user.Email);
 
                     user.Id = (int)cmd.ExecuteScalar();
+                }
+            }
+        }
+
+        public void Update(Users user)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        UPDATE Users
+                            SET Name = @Name,
+                                Email = @Email,
+                        WHERE Id = @Id";
+
+                    DbUtils.AddParameter(cmd, "@Name", user.Name);
+                    DbUtils.AddParameter(cmd, "@Email", user.Email);
+                    DbUtils.AddParameter(cmd, "@Id", user.Id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void Delete(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = "DELETE FROM Users WHERE Id = @Id";
+                    DbUtils.AddParameter(cmd, "@id", id);
+                    cmd.ExecuteNonQuery();
                 }
             }
         }
