@@ -1,3 +1,4 @@
+using HealthNut.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -49,6 +50,8 @@ namespace HealthNut
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "HealthNut", Version = "v1" });
             });
+
+            services.AddTransient<IUserRepository, UserRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
