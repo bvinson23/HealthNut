@@ -62,7 +62,7 @@ namespace HealthNut.Controllers
         public IActionResult Post(Users user)
         {
             _userRepository.Add(user);
-            return CreatedAtAction("Get", new { id = user.Id }, user);
+            return CreatedAtAction(nameof(GetByFirebaseUserId), new { firebaseUserId = user.FirebaseUserId }, user);
         }
 
         [HttpPut("{id}")]

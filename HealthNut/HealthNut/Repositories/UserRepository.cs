@@ -137,13 +137,14 @@ namespace HealthNut.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        INSERT INTO UserProfile ([Name], Email)
+                        INSERT INTO Users ([Name], Email, FirebaseUserId)
                         OUTPUT INSERTED.ID
-                        VALUES (@Name, @Email)
+                        VALUES (@Name, @Email, @FirebaseUserId)
                     ";
 
                     DbUtils.AddParameter(cmd, "@Name", user.Name);
                     DbUtils.AddParameter(cmd, "@Email", user.Email);
+                    DbUtils.AddParameter(cmd, "@FirebaseUserId", user.FirebaseUserId);
 
                     user.Id = (int)cmd.ExecuteScalar();
                 }

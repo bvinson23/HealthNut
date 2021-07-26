@@ -10,6 +10,7 @@ import {
   NavLink
 } from 'reactstrap';
 import { logout } from "../modules/authManager";
+import "../App.css";
 
 const Header = ({ isLoggedIn }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,11 +28,11 @@ const Header = ({ isLoggedIn }) => {
               <>
                 {/* <NavItem>
                   <NavLink tag={RRNavLink} to="/videos/add">New Video</NavLink>
-                </NavItem>
+                </NavItem> */}
                 <NavItem>
                   <a aria-current="page" className="nav-link"
                     style={{ cursor: "pointer" }} onClick={logout}>Logout</a>
-                </NavItem> */}
+                </NavItem>
               </>
             }
             {!isLoggedIn &&
