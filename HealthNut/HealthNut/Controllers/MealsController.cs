@@ -1,4 +1,5 @@
-﻿using HealthNut.Repositories;
+﻿using HealthNut.Models;
+using HealthNut.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -14,15 +15,17 @@ namespace HealthNut.Controllers
     public class MealsController : ControllerBase
     {
         private readonly IMealsRepository _mealsRepository;
-        public MealsController(IMealsRepository mealsRepository)
+        private readonly IUserRepository _userRepository;
+        public MealsController(IMealsRepository mealsRepository, IUserRepository userRepository)
         {
             _mealsRepository = mealsRepository;
+            _userRepository = userRepository;
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            var user = GetCurrentUserProfile();
+            var user = GetCurrentFirebaseUserId();
             if (user == null)
             {
                 return Unauthorized();
@@ -45,7 +48,17 @@ namespace HealthNut.Controllers
             return Ok(meal);
         }
 
-        private string GetCurrentUserProfile()
+        [HttpPost]
+        public IActionResult AddMeal(Meals meal)
+        {
+            var currentUser = GetCurrentUser();
+            meal.UserId = currentUser.Id;
+
+            _mealsRepository.AddMeal(meal);
+            return CreatedAtAction("Get", new { id = meal.Id }, meal);
+        }
+
+        private string GetCurrentFirebaseUserId()
         {
             var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
@@ -57,6 +70,12 @@ namespace HealthNut.Controllers
             {
                 return null;
             }
+        }
+
+        private Users GetCurrentUser()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userRepository.GetByFirebaseUserId(firebaseUserId);
         }
     }
 }
