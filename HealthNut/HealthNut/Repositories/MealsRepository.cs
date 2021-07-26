@@ -154,7 +154,12 @@ namespace HealthNut.Repositories
                 UserId = DbUtils.GetInt(reader, "UserId"),
                 Name = DbUtils.GetString(reader, "Name"),
                 Calories = DbUtils.GetInt(reader, "Calories"),
-                MealCategoryId = DbUtils.GetInt(reader, "MealCategoryId")
+                MealCategoryId = DbUtils.GetInt(reader, "MealCategoryId"),
+                MealCategory = new MealCategories()
+                {
+                    Id = DbUtils.GetInt(reader, "MealCategoryId"),
+                    Name = DbUtils.GetString(reader, "CategoryName")
+                }
             };
         }
     }

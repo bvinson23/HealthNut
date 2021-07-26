@@ -2,6 +2,7 @@ import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Login from "./Login";
 import Register from "./Register";
+import MealList from "./meals/MealList";
 
 const ApplicationViews = ({ isLoggedIn }) => {
     return (
@@ -13,6 +14,10 @@ const ApplicationViews = ({ isLoggedIn }) => {
 
                 <Route path="/register">
                     <Register />
+                </Route>
+
+                <Route path="/meals">
+                    {isLoggedIn ? <MealList /> : <Redirect to="/login" />}
                 </Route>
             </Switch>
         </main>
