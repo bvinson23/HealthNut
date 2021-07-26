@@ -13,7 +13,7 @@ namespace HealthNut.Repositories
     {
         public MealsRepository(IConfiguration configuration) : base(configuration) { }
 
-        public List<Meals> GetAllMeals()
+        public List<Meals> GetAllUserMeals(string firebaseUserId)
         {
             using (var conn = Connection)
             {
@@ -22,11 +22,15 @@ namespace HealthNut.Repositories
                 {
                     cmd.CommandText = @"
                         SELECT m.Id, m.UserId, m.[Name], m.Calories, m.MealCategoryId,
-                               mc.Name AS CategoryName
+                               mc.Name AS CategoryName,
+                               u.Name AS UserName, u.Email
                         FROM Meals m
                         JOIN MealCategories mc on mc.Id = m.MealCategoryId
+                        JOIN Users u ON u.Id = m.UserId
+                        WHERE u.FirebaseUserId = @FirebaseUserId
                     ";
 
+                    DbUtils.AddParameter(cmd, "@FirebaseUserId", firebaseUserId);
                     var reader = cmd.ExecuteReader();
                     var meals = new List<Meals>();
                     while (reader.Read())
@@ -41,7 +45,7 @@ namespace HealthNut.Repositories
             }
         }
 
-        public Meals GetMealById(int id)
+        public Meals GetMealById(int id, string firebaseUserId)
         {
             using (var conn = Connection)
             {
@@ -50,13 +54,16 @@ namespace HealthNut.Repositories
                 {
                     cmd.CommandText = @"
                         SELECT m.Id, m.UserId, m.[Name], m.Calories, m.MealCategoryId,
-                               mc.Name AS CategoryName
+                               mc.Name AS CategoryName,
+                               u.Name AS UserName, u.Email
                         FROM Meals m
                         JOIN MealCategories mc on mc.Id = m.MealCategoryId
-                        WHERE m.Id = @Id
+                        JOIN Users u ON u.Id = m.UserId
+                        WHERE m.Id = @Id AND u.FirebaseUserId = @FirebaseUserId
                     ";
 
                     DbUtils.AddParameter(cmd, "@Id", id);
+                    DbUtils.AddParameter(cmd, "@FirebaseUserId", firebaseUserId);
 
                     var reader = cmd.ExecuteReader();
 
@@ -94,6 +101,47 @@ namespace HealthNut.Repositories
                     DbUtils.AddParameter(cmd, "@Calories", meal.Calories);
                     DbUtils.AddParameter(cmd, "@MealCategoryId", meal.MealCategoryId);
                     meal.Id = (int)cmd.ExecuteScalar();
+                }
+            }
+        }
+
+        public void UpdateMeal(Meals meal)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        UPDATE Meals
+                            SET UserId = @UserId
+                                Name = @Name
+                                Calories = @Calories
+                                MealCategoryId = @MealCategoryId
+                        WHERE Id = @Id
+                    ";
+
+                    DbUtils.AddParameter(cmd, "@UserId", meal.UserId);
+                    DbUtils.AddParameter(cmd, "@Name", meal.Name);
+                    DbUtils.AddParameter(cmd, "@Calories", meal.Calories);
+                    DbUtils.AddParameter(cmd, "@MealCategoryId", meal.MealCategoryId);
+                    DbUtils.AddParameter(cmd, "@Id", meal.Id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void DeleteMeal(int mealId)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"DELETE FROM Meals WHERE Id = @mealId";
+                    DbUtils.AddParameter(cmd, "@mealId", mealId);
+                    cmd.ExecuteNonQuery();
                 }
             }
         }
