@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Login from "./Login";
 import Register from "./Register";
 import MealList from "./meals/MealList";
+import AddNewMeal from "./meals/MealForm";
 
 const ApplicationViews = ({ isLoggedIn }) => {
     return (
@@ -16,8 +17,12 @@ const ApplicationViews = ({ isLoggedIn }) => {
                     <Register />
                 </Route>
 
-                <Route path="/meals">
+                <Route path="/meals" exact>
                     {isLoggedIn ? <MealList /> : <Redirect to="/login" />}
+                </Route>
+
+                <Route path="/meals/add">
+                    {isLoggedIn ? <AddNewMeal /> : <Redirect to="/login" />}
                 </Route>
             </Switch>
         </main>
