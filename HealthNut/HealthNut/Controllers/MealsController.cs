@@ -58,6 +58,23 @@ namespace HealthNut.Controllers
             return CreatedAtAction("Get", new { id = meal.Id }, meal);
         }
 
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, Meals meal)
+        {
+            var currentUser = GetCurrentUser();
+            if (meal.UserId != currentUser.Id)
+            {
+                return Unauthorized();
+            }
+            if (id != meal.Id)
+            {
+                return BadRequest();
+            }
+
+            _mealsRepository.UpdateMeal(meal);
+            return NoContent();
+        }
+
         private string GetCurrentFirebaseUserId()
         {
             var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;

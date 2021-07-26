@@ -114,9 +114,9 @@ namespace HealthNut.Repositories
                 {
                     cmd.CommandText = @"
                         UPDATE Meals
-                            SET UserId = @UserId
-                                Name = @Name
-                                Calories = @Calories
+                            SET UserId = @UserId,
+                                Name = @Name,
+                                Calories = @Calories,
                                 MealCategoryId = @MealCategoryId
                         WHERE Id = @Id
                     ";
