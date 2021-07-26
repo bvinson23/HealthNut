@@ -34,6 +34,17 @@ namespace HealthNut.Controllers
             }
         }
 
+        [HttpGet("{id}, {firebaseUserId}")]
+        public IActionResult Get(int id, string firebaseUserId)
+        {
+            var meal = _mealsRepository.GetMealById(id, firebaseUserId);
+            if (meal == null)
+            {
+                return NotFound();
+            }
+            return Ok(meal);
+        }
+
         private string GetCurrentUserProfile()
         {
             var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
