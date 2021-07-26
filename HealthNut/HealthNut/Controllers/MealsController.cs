@@ -75,6 +75,13 @@ namespace HealthNut.Controllers
             return NoContent();
         }
 
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            _mealsRepository.DeleteMeal(id);
+            return NoContent();
+        }
+
         private string GetCurrentFirebaseUserId()
         {
             var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
