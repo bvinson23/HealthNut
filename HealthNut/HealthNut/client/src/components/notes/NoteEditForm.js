@@ -1,68 +1,57 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { editMeal, getMealById } from "../../modules/mealManager";
+import { editNote, getNoteById } from "../../modules/noteManager";
 import { Form, FormGroup, Button, Container } from "reactstrap";
 
-const EditExistingMeal = () => {
-    const [meal, setMeal] = useState({});
+const EditExistingNote = () => {
+    const [note, setNote] = useState({});
     const { id } = useParams();
 
     const history = useHistory();
 
     const handleInputChange = (evt) => {
-        const editedMeal = { ...meal}
+        const editedNote = { ...note }
         let selectedValue = evt.target.value
-        editedMeal[evt.target.id] = selectedValue
-        setMeal(editedMeal)
+        editedNote[evt.target.id] = selectedValue
+        setMeal(editedNote)
     };
 
     const handleSave = (click) => {
         click.preventDefault();
-        editMeal(meal)
-            .then(() => history.push("/meals"))
+        editNote(note)
+            .then(() => history.push("/notes"))
     };
 
     const handleCancel = (click) => {
         click.preventDefault();
-        history.push("/meals")
+        history.push("/notes")
     };
 
     useEffect(() => {
-        getMealById(id).then(setMeal)
+        getNoteById(id).then(setNote)
     }, [id]);
 
     return (
         <Container className="justified-content-center">
             <Form>
                 <FormGroup>
-                    <label>Description</label>
-                    <input type="text"
-                        id="name"
+                    <input
+                        type="hidden"
+                        id="dateCreated"
                         onChange={handleInputChange}
                         required
-                        autoComplete="off"
                         className="form-control"
-                        defaultValue={meal.name} />
+                        defaultValue={note.dateCreated} />
                 </FormGroup>
                 <FormGroup>
-                    <label>Calories</label>
+                    <label>Content</label>
                     <input type="text"
-                        id="calories"
+                        id="content"
                         onChange={handleInputChange}
                         required
                         autoComplete="off"
                         className="form-control"
-                        defaultValue={meal.calories} />
-                </FormGroup>
-                <FormGroup>
-                    <label>Meal</label>
-                    <input type="text"
-                        id="mealCategoryId"
-                        onChange={handleInputChange}
-                        required
-                        autoComplete="off"
-                        className="form-control"
-                        defaultValue={meal.mealCategoryId} />
+                        defaultValue={note.content} />
                 </FormGroup>
             </Form>
             <Button className="article-btn"
@@ -74,4 +63,4 @@ const EditExistingMeal = () => {
     )
 };
 
-export default EditExistingMeal;
+export default EditExistingNote;
