@@ -58,6 +58,23 @@ namespace HealthNut.Controllers
             return CreatedAtAction("Get", new { id = note.Id }, note);
         }
 
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, Notes note)
+        {
+            var currentUser = GetCurrentUser();
+            if (note.UserId != currentUser.Id)
+            {
+                return Unauthorized();
+            }
+            if (id != note.Id)
+            {
+                return BadRequest();
+            }
+
+            _notesRepository.UpdateNote(note);
+            return NoContent();
+        }
+
         private string GetCurrentFirebaseUserId()
         {
             var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
