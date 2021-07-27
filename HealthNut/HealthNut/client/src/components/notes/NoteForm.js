@@ -15,7 +15,7 @@ const AddNewNote = () => {
         const newNote = { ...note }
         let selectedValue = evt.target.value
         newNote[evt.target.id] = selectedValue
-        setMeal(newNote)
+        setNote(newNote)
     };
 
     const handleSave = (click) => {
