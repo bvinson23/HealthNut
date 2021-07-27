@@ -100,6 +100,33 @@ namespace HealthNut.Repositories
             }
         }
 
+        public void UpdateWorkout(Workouts workout)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        UPDATE Workouts
+                            SET UserId = @UserId,
+                                Name = @Name,
+                                CaloriesBurned = @CaloriesBurned,
+                                Duration = @Duration
+                        WHERE Id = @Id
+                    ";
+
+                    DbUtils.AddParameter(cmd, "@UserId", workout.UserId);
+                    DbUtils.AddParameter(cmd, "@Name", workout.Name);
+                    DbUtils.AddParameter(cmd, "@CaloriesBurned", workout.CaloriesBurned);
+                    DbUtils.AddParameter(cmd, "@Duration", workout.Duration);
+                    DbUtils.AddParameter(cmd, "@Id", workout.Id);
+
+                    cmd.ExecuteNonQuery();
+                }    
+            }
+        }
+
         private Workouts NewWorkoutFromDb(SqlDataReader reader)
         {
             return new Workouts()
