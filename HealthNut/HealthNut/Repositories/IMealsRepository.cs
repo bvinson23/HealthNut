@@ -8,7 +8,7 @@ namespace HealthNut.Repositories
         void AddMeal(Meals meal);
         void DeleteMeal(int mealId);
         List<Meals> GetAllUserMeals(string firebaseUserId);
-        Meals GetMealById(int id, string firebaseUserId);
+        Meals GetMealById(int id);
         void UpdateMeal(Meals meal);
     }
 }

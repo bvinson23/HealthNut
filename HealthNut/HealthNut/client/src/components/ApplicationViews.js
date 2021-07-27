@@ -4,6 +4,7 @@ import Login from "./Login";
 import Register from "./Register";
 import MealList from "./meals/MealList";
 import AddNewMeal from "./meals/MealForm";
+import EditExistingMeal from "./meals/MealEditForm";
 
 const ApplicationViews = ({ isLoggedIn }) => {
     return (
@@ -23,6 +24,10 @@ const ApplicationViews = ({ isLoggedIn }) => {
 
                 <Route path="/meals/add">
                     {isLoggedIn ? <AddNewMeal /> : <Redirect to="/login" />}
+                </Route>
+
+                <Route path="/meals/edit/:id">
+                    {isLoggedIn ? <EditExistingMeal /> : <Redirect to="/login" />}
                 </Route>
             </Switch>
         </main>

@@ -37,10 +37,10 @@ namespace HealthNut.Controllers
             }
         }
 
-        [HttpGet("{id}, {firebaseUserId}")]
-        public IActionResult Get(int id, string firebaseUserId)
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
         {
-            var meal = _mealsRepository.GetMealById(id, firebaseUserId);
+            var meal = _mealsRepository.GetMealById(id);
             if (meal == null)
             {
                 return NotFound();

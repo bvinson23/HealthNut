@@ -45,7 +45,7 @@ namespace HealthNut.Repositories
             }
         }
 
-        public Meals GetMealById(int id, string firebaseUserId)
+        public Meals GetMealById(int id)
         {
             using (var conn = Connection)
             {
@@ -59,11 +59,10 @@ namespace HealthNut.Repositories
                         FROM Meals m
                         JOIN MealCategories mc on mc.Id = m.MealCategoryId
                         JOIN Users u ON u.Id = m.UserId
-                        WHERE m.Id = @Id AND u.FirebaseUserId = @FirebaseUserId
+                        WHERE m.Id = @Id
                     ";
 
                     DbUtils.AddParameter(cmd, "@Id", id);
-                    DbUtils.AddParameter(cmd, "@FirebaseUserId", firebaseUserId);
 
                     var reader = cmd.ExecuteReader();
 
