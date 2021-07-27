@@ -78,6 +78,27 @@ namespace HealthNut.Repositories
             }
         }
 
+        public void AddNote(Notes note)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        INSERT INTO Notes (UserId, DateCreated, Content)
+                        OUTPUT INSERTED.ID
+                        VALUES (@UserId, @DateCreated, Content)
+                    ";
+
+                    DbUtils.AddParameter(cmd, "@UserId", note.UserId);
+                    DbUtils.AddParameter(cmd, "@DateCreated", note.DateCreated);
+                    DbUtils.AddParameter(cmd, "@Content", note.Content);
+                    note.Id = (int)cmd.ExecuteScalar();
+                }
+            }
+        }
+
         private Notes NewNoteFromDb(SqlDataReader reader)
         {
             return new Notes()
