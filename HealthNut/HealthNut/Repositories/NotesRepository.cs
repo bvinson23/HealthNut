@@ -51,7 +51,7 @@ namespace HealthNut.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT n.Id, n.UserId, n.DateCreated, n.Content
+                        SELECT n.Id, n.UserId, n.DateCreated, n.Content,
                                u.Name, u.Email
                         FROM Notes n
                         JOIN Users u ON u.Id = n.UserId
@@ -88,7 +88,7 @@ namespace HealthNut.Repositories
                     cmd.CommandText = @"
                         INSERT INTO Notes (UserId, DateCreated, Content)
                         OUTPUT INSERTED.ID
-                        VALUES (@UserId, @DateCreated, Content)
+                        VALUES (@UserId, @DateCreated, @Content)
                     ";
 
                     DbUtils.AddParameter(cmd, "@UserId", note.UserId);

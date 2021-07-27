@@ -53,6 +53,7 @@ namespace HealthNut.Controllers
         {
             var currentUser = GetCurrentUser();
             note.UserId = currentUser.Id;
+            note.DateCreated = DateTime.Now;
 
             _notesRepository.AddNote(note);
             return CreatedAtAction("Get", new { id = note.Id }, note);

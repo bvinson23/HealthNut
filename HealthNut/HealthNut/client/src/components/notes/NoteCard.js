@@ -19,7 +19,7 @@ const Note = ({ note, getNotes }) => {
                 <div className="NoteList">
                     <label style={{width: "10em" }}>Date: {note.dateCreated}</label>
                     <label style={{width: "10em" }}>{note.content}</label>
-                    <Button onClick={() => history.push(`/meals/edit/${note.id}`)} style={{width: "5em", marginLeft: ".5rem"}}>Edit</Button>
+                    <Button onClick={() => history.push(`/notes/edit/${note.id}`)} style={{width: "5em", marginLeft: ".5rem"}}>Edit</Button>
                     <Button onClick={deleteSelectedNote} style={{width: "5em", marginLeft: ".5rem"}}>Delete</Button>
                 </div>
             </CardBody>

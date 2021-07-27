@@ -5,7 +5,6 @@ import { Form, FormGroup, Button, Container } from "reactstrap";
 
 const AddNewNote = () => {
     const [note, setNote] = useState({
-        dateCreated: new Date().toLocaleString(),
         content: ""
     });
 
@@ -36,15 +35,6 @@ const AddNewNote = () => {
     return (
         <Container className="justified-content-center">
             <Form>
-                <FormGroup>
-                    <input
-                        type="hidden"
-                        id="dateCreated"
-                        onChange={handleInputChange}
-                        required
-                        className="form-control"
-                        value={note.dateCreated} />
-                </FormGroup>
                 <FormGroup>
                     <label>Content</label>
                     <input type="text"
