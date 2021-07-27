@@ -43,6 +43,41 @@ namespace HealthNut.Repositories
             }
         }
 
+        public Workouts GetWorkoutById(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        SELECT w.Id, w.UserId, w.[Name], w.CaloriesBurned, w.Duration,
+                               u.Name AS UserName, u.Email
+                        FROM Workouts w
+                        JOIN Users u ON u.Id = w.UserId
+                        WHERE w.Id = @Id
+                    ";
+
+                    DbUtils.AddParameter(cmd, "@Id", id);
+
+                    var reader = cmd.ExecuteReader();
+
+                    Workouts workout = null;
+                    while (reader.Read())
+                    {
+                        if (workout == null)
+                        {
+                            workout = NewWorkoutFromDb(reader);
+                        }
+                    }
+
+                    reader.Close();
+
+                    return workout;
+                }
+            }
+        }
+
         private Workouts NewWorkoutFromDb(SqlDataReader reader)
         {
             return new Workouts()
