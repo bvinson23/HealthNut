@@ -48,6 +48,16 @@ namespace HealthNut.Controllers
             return Ok(note);
         }
 
+        [HttpPost]
+        public IActionResult AddNote(Notes note)
+        {
+            var currentUser = GetCurrentUser();
+            note.UserId = currentUser.Id;
+
+            _notesRepository.AddNote(note);
+            return CreatedAtAction("Get", new { id = note.Id }, note);
+        }
+
         private string GetCurrentFirebaseUserId()
         {
             var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
