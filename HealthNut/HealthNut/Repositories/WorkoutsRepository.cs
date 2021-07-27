@@ -127,6 +127,20 @@ namespace HealthNut.Repositories
             }
         }
 
+        public void DeleteWorkout(int workoutId)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"DELETE FROM Workouts WHERE Id = @workoutId";
+                    DbUtils.AddParameter(cmd, "@workoutId", workoutId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
         private Workouts NewWorkoutFromDb(SqlDataReader reader)
         {
             return new Workouts()
