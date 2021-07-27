@@ -12,5 +12,6 @@ namespace HealthNut.Models
         public string Name { get; set; }
         public int Calories { get; set; }
         public int MealCategoryId { get; set; }
+        public MealCategories MealCategory { get; set; }
     }
 }
