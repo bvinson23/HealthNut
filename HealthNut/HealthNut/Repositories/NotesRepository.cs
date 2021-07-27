@@ -124,6 +124,20 @@ namespace HealthNut.Repositories
             }
         }
 
+        public void DeleteNote(int noteId)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"DELETE FROM Notes WHERE Id = @noteId";
+                    DbUtils.AddParameter(cmd, "@noteId", noteId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
         private Notes NewNoteFromDb(SqlDataReader reader)
         {
             return new Notes()
