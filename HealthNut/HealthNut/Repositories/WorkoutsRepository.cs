@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace HealthNut.Repositories
 {
-    public class WorkoutsRepository : BaseRepository
+    public class WorkoutsRepository : BaseRepository, IWorkoutsRepository
     {
         public WorkoutsRepository(IConfiguration configuration) : base(configuration) { }
 
@@ -123,7 +123,7 @@ namespace HealthNut.Repositories
                     DbUtils.AddParameter(cmd, "@Id", workout.Id);
 
                     cmd.ExecuteNonQuery();
-                }    
+                }
             }
         }
 

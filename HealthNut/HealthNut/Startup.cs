@@ -74,6 +74,7 @@ namespace HealthNut
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IMealsRepository, MealsRepository>();
             services.AddTransient<INotesRepository, NotesRepository>();
+            services.AddTransient<IWorkoutsRepository, WorkoutsRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
