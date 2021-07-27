@@ -37,6 +37,17 @@ namespace HealthNut.Controllers
             }
         }
 
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
+        {
+            var note = _notesRepository.GetNoteById(id);
+            if (note == null)
+            {
+                return NotFound();
+            }
+            return Ok(note);
+        }
+
         private string GetCurrentFirebaseUserId()
         {
             var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
