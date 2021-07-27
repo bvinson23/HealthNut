@@ -5,6 +5,9 @@ import Register from "./Register";
 import MealList from "./meals/MealList";
 import AddNewMeal from "./meals/MealForm";
 import EditExistingMeal from "./meals/MealEditForm";
+import NoteList from "./notes/NoteList";
+import AddNewNote from "./notes/NoteForm";
+import EditExistingNote from "./notes/NoteEditForm";
 
 const ApplicationViews = ({ isLoggedIn }) => {
     return (
@@ -28,6 +31,18 @@ const ApplicationViews = ({ isLoggedIn }) => {
 
                 <Route path="/meals/edit/:id">
                     {isLoggedIn ? <EditExistingMeal /> : <Redirect to="/login" />}
+                </Route>
+
+                <Route path="/notes" exact>
+                    {isLoggedIn ? <NoteList /> : <Redirect to="/login" />}
+                </Route>
+
+                <Route path="/notes/add">
+                    {isLoggedIn ? <AddNewNote /> : <Redirect to="/login" />}
+                </Route>
+
+                <Route path="/notes/edit/:id">
+                    {isLoggedIn ? <EditExistingNote /> : <Redirect to="/login" />}
                 </Route>
             </Switch>
         </main>
