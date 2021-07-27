@@ -78,6 +78,28 @@ namespace HealthNut.Repositories
             }
         }
 
+        public void AddWorkout(Workouts workout)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        INSERT INTO Workouts (UserId, Name, CaloriesBurned, Duration)
+                        OUTPUT INSERTED.ID
+                        VALUES (@UserId, @Name, @CaloriesBurned, @Duration)
+                    ";
+
+                    DbUtils.AddParameter(cmd, "@UserId", workout.UserId);
+                    DbUtils.AddParameter(cmd, "@Name", workout.Name);
+                    DbUtils.AddParameter(cmd, "@CaloriesBurned", workout.CaloriesBurned);
+                    DbUtils.AddParameter(cmd, "@Duration", workout.Duration);
+                    workout.Id = (int)cmd.ExecuteScalar();
+                }
+            }
+        }
+
         private Workouts NewWorkoutFromDb(SqlDataReader reader)
         {
             return new Workouts()
