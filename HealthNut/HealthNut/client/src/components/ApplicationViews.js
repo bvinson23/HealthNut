@@ -8,6 +8,9 @@ import EditExistingMeal from "./meals/MealEditForm";
 import NoteList from "./notes/NoteList";
 import AddNewNote from "./notes/NoteForm";
 import EditExistingNote from "./notes/NoteEditForm";
+import WorkoutList from "./workouts/WorkoutList";
+import AddNewWorkout from "./workouts/WorkoutForm";
+import EditExistingWorkout from "./workouts/WorkoutEditForm";
 
 const ApplicationViews = ({ isLoggedIn }) => {
     return (
@@ -43,6 +46,18 @@ const ApplicationViews = ({ isLoggedIn }) => {
 
                 <Route path="/notes/edit/:id">
                     {isLoggedIn ? <EditExistingNote /> : <Redirect to="/login" />}
+                </Route>
+
+                <Route path="/workouts" exact>
+                    {isLoggedIn ? <WorkoutList /> : <Redirect to="/login" />}
+                </Route>
+
+                <Route path="/workouts/add">
+                    {isLoggedIn ? <AddNewWorkout /> : <Redirect to="/login" />}
+                </Route>
+
+                <Route path="/workouts/edit/:id">
+                    {isLoggedIn ? <EditExistingWorkout /> : <Redirect to="/login" />}
                 </Route>
             </Switch>
         </main>
