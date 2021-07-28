@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace HealthNut.Repositories
 {
-    public class GoalsRepository : BaseRepository
+    public class GoalsRepository : BaseRepository, IGoalsRepository
     {
         public GoalsRepository(IConfiguration configuration) : base(configuration) { }
 
