@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { NavLink as RRNavLink } from "react-router-dom";
 import { Navbar, NavbarToggler, NavbarBrand } from "reactstrap";
 import { getAllGoals } from "../../modules/goalManager";
+import { getRecentWeight } from "../../modules/weightManager";
 import Goal from "./GoalCard";
 
 const GoalList = () => {
@@ -9,13 +10,22 @@ const GoalList = () => {
     const toggle = () => setIsOpen(!isOpen);
 
     const [goals, setGoals] = useState([]);
+    const [weight, setWeight] = useState({});
 
     const getGoals = () => {
         getAllGoals().then(goals => setGoals(goals));
     };
 
+    const getWeight = () => {
+        getRecentWeight().then(weight => setWeight(weight));
+    };
+
     useEffect(() => {
         getGoals();
+    }, []);
+
+    useEffect(() => {
+        getWeight();
     }, []);
 
     return (
@@ -25,7 +35,8 @@ const GoalList = () => {
                 <NavbarToggler onClick={toggle} />
             </Navbar>
             {goals.map((goal) => (
-                <Goal goal={goal} key={goal.id} getGoals={getGoals} />
+                <Goal goal={goal} key={goal.id} getGoals={getGoals}
+                    weight={weight} />
             ))}
         </div>
     )

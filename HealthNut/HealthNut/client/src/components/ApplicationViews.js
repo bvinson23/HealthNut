@@ -14,6 +14,7 @@ import EditExistingWorkout from "./workouts/WorkoutEditForm";
 import GoalList from "./goals/GoalList"
 import AddNewGoal from "./goals/GoalForm";
 import EditExistingGoal from "./goals/GoalEditForm";
+import AddNewWeight from "./weights/WeightForm";
 
 const ApplicationViews = ({ isLoggedIn }) => {
     return (
@@ -73,6 +74,10 @@ const ApplicationViews = ({ isLoggedIn }) => {
 
                 <Route path="/goals/edit/:id">
                     {isLoggedIn ? <EditExistingGoal /> : <Redirect to="/login" />}
+                </Route>
+
+                <Route path="/weight/add">
+                    {isLoggedIn ? <AddNewWeight /> : <Redirect to="/login" />}
                 </Route>
             </Switch>
         </main>
