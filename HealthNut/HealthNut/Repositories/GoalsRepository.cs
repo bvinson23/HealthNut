@@ -21,7 +21,7 @@ namespace HealthNut.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT g.Id, g.UserId, g.Weight, g.TargetDate, g.DateComplete,
+                        SELECT g.Id, g.UserId, g.Weight, g.TargetDate,
                                u.Name, u.Email
                         FROM Goals g
                         JOIN Users u ON u.Id = g.UserId
@@ -51,7 +51,7 @@ namespace HealthNut.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT g.Id, g.UserId, g.Weight, g.TargetDate, g.DateComplete,
+                        SELECT g.Id, g.UserId, g.Weight, g.TargetDate,
                                u.Name, u.Email
                         FROM Goals g
                         JOIN Users u ON u.Id = g.UserId
@@ -86,15 +86,14 @@ namespace HealthNut.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        INSERT INTO Goals (UserId, Weight, TargetDate, DateComplete)
+                        INSERT INTO Goals (UserId, Weight, TargetDate)
                         OUTPUT INSERTED.ID
-                        VALUES (@UserId, @Weight, @TargetDate, @DateComplete)
+                        VALUES (@UserId, @Weight, @TargetDate)
                     ";
 
                     DbUtils.AddParameter(cmd, "@UserId", goal.UserId);
                     DbUtils.AddParameter(cmd, "@Weight", goal.Weight);
                     DbUtils.AddParameter(cmd, "@TargetDate", goal.TargetDate);
-                    DbUtils.AddParameter(cmd, "@DateComplete", goal.DateComplete);
                     goal.Id = (int)cmd.ExecuteScalar();
                 }
             }
@@ -110,16 +109,14 @@ namespace HealthNut.Repositories
                     cmd.CommandText = @"
                         UPDATE Goals
                             SET UserId = @UserId,
-                                Weight = @Weight
+                                Weight = @Weight,
                                 TargetDate = @TargetDate
-                                DateComplete = @DateComplete
                         WHERE Id = @Id
                     ";
 
                     DbUtils.AddParameter(cmd, "@UserId", goal.UserId);
                     DbUtils.AddParameter(cmd, "@Weight", goal.Weight);
                     DbUtils.AddParameter(cmd, "@TargetDate", goal.TargetDate);
-                    DbUtils.AddParameter(cmd, "@DateComplete", goal.DateComplete);
                     DbUtils.AddParameter(cmd, "@Id", goal.Id);
 
                     cmd.ExecuteNonQuery();
@@ -149,7 +146,6 @@ namespace HealthNut.Repositories
                 UserId = DbUtils.GetInt(reader, "UserId"),
                 Weight = DbUtils.GetInt(reader, "Weight"),
                 TargetDate = DbUtils.GetDateTime(reader, "TargetDate"),
-                DateComplete = DbUtils.GetDateTime(reader, "DateComplete")
             };
         }
     }
