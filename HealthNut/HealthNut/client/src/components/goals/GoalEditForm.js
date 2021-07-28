@@ -1,48 +1,58 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { editNote, getNoteById } from "../../modules/noteManager";
+import { editGoal, getGoalById } from "../../modules/goalManager";
 import { Form, FormGroup, Button, Container } from "reactstrap";
 
-const EditExistingNote = () => {
-    const [note, setNote] = useState({});
+const EditExistingGoal = () => {
+    const [goal, setGoal] = useState({});
     const { id } = useParams();
 
     const history = useHistory();
 
     const handleInputChange = (evt) => {
-        const editedNote = { ...note }
+        const editedGoal = { ...goal }
         let selectedValue = evt.target.value
-        editedNote[evt.target.id] = selectedValue
-        setNote(editedNote)
+        editedGoal[evt.target.id] = selectedValue
+        setGoal(editedGoal)
     };
 
     const handleSave = (click) => {
         click.preventDefault();
-        editNote(note)
-            .then(() => history.push("/notes"))
+        editGoal(goal)
+            .then(() => history.push("/goals"))
     };
 
     const handleCancel = (click) => {
         click.preventDefault();
-        history.push("/notes")
+        history.push("/goals")
     };
 
     useEffect(() => {
-        getNoteById(id).then(setNote)
+        getGoalById(id).then(setGoal)
     }, [id]);
 
     return (
         <Container className="justified-content-center">
             <Form>
-                <FormGroup>
-                    <label>Content</label>
+            <FormGroup>
+                    <label>Weight Goal</label>
                     <input type="text"
-                        id="content"
+                        id="weight"
                         onChange={handleInputChange}
                         required
                         autoComplete="off"
                         className="form-control"
-                        defaultValue={note.content} />
+                        defaultValue={goal.weight} />
+                </FormGroup>
+                <FormGroup>
+                    <label>Target Date</label>
+                    <input type="date"
+                        id="targetDate"
+                        onChange={handleInputChange}
+                        required
+                        autoComplete="off"
+                        className="form-control"
+                        defaultValue={goal.targetDate} />
                 </FormGroup>
             </Form>
             <Button className="article-btn"
@@ -54,4 +64,4 @@ const EditExistingNote = () => {
     )
 };
 
-export default EditExistingNote;
+export default EditExistingGoal;
