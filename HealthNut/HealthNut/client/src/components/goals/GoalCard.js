@@ -1,7 +1,6 @@
 import React from "react";
 import { Card, CardBody, Button } from "reactstrap";
 import { useHistory } from "react-router-dom";
-import { deleteGoal } from "../../modules/goalManager";
 
 const Goal = ({ goal, weight }) => {
     const history = useHistory();
@@ -13,7 +12,7 @@ const Goal = ({ goal, weight }) => {
                     <label style={{width: "10em" }}>Weight Goal: {goal.weight}</label>
                     <label style={{width: "10em" }}>Current Weight: {weight.currentWeight}</label>
                     <Button onClick={() => history.push(`/goals/edit/${goal.id}`)} style={{width: "5em", marginLeft: ".5rem"}}>Edit</Button>
-                    <Button onClick="" style={{width: "5em", marginLeft: ".5rem"}}>Weigh In</Button>
+                    <Button style={{width: "5em", marginLeft: ".5rem"}}>Weigh In</Button>
                 </div>
             </CardBody>
         </Card>
