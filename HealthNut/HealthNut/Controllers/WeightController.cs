@@ -68,6 +68,7 @@ namespace HealthNut.Controllers
         {
             var currentUser = GetCurrentUser();
             weight.UserId = currentUser.Id;
+            weight.RecordedDate = DateTime.Now;
 
             _weightRepository.AddWeight(weight);
             return CreatedAtAction("Get", new { id = weight.Id }, weight);

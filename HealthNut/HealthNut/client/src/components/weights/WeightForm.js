@@ -5,7 +5,7 @@ import { Form, FormGroup, Button, Container } from "reactstrap";
 
 const AddNewWeight = () => {
     const [weight, setWeight] = useState({
-        currentWeight: 0,
+        currentWeight: "",
     });
 
     const history = useHistory();
@@ -20,12 +20,12 @@ const AddNewWeight = () => {
     const handleSave = (click) => {
         click.preventDefault();
         addWeight(weight)
-            .then(() => history.push("/weight"))
+            .then(() => history.push("/goals"))
     };
 
     const handleCancelSave = (click) => {
         click.preventDefault();
-        history.push("/weight")
+        history.push("/goals")
     };
 
     return (
