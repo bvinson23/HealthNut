@@ -37,6 +37,21 @@ namespace HealthNut.Controllers
             }
         }
 
+        [HttpGet("GetRecent")]
+        public IActionResult GetMostRecentWeight()
+        {
+            var user = GetCurrentFirebaseUserId();
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+            else
+            {
+                var weight = _weightRepository.GetMostRecentWeight(user);
+                return Ok(weight);
+            }
+        }
+
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {

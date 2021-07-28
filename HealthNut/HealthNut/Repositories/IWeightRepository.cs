@@ -9,6 +9,7 @@ namespace HealthNut.Repositories
         void DeleteWeight(int weightId);
         List<Weight> GetAllUserWeights(string firebaseUserId);
         Weight GetWeightById(int id);
+        Weight GetMostRecentWeight(string firebaseUserId);
         void UpdateWeight(Weight weight);
     }
 }

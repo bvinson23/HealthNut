@@ -78,6 +78,40 @@ namespace HealthNut.Repositories
             }
         }
 
+        public Weight GetMostRecentWeight(string firebaseUserId)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        SELECT TOP 1 w.Id, w.UserId, w.CurrentWeight, w.RecordedDate,
+                               u.Name, u.Email
+                        FROM Weight w
+                        JOIN Users u ON u.Id = w.UserId
+                        WHERE u.FirebaseUserId = @FirebaseUserId
+                        ORDER BY w.RecordedDate DESC
+                    ";
+
+                    DbUtils.AddParameter(cmd, "@FirebaseUserId", firebaseUserId);
+                    var reader = cmd.ExecuteReader();
+                    Weight weight = null;
+                    while (reader.Read())
+                    {
+                        if (weight == null)
+                        {
+                            weight = NewWeightFromDb(reader);
+                        }
+                    }
+
+                    reader.Close();
+
+                    return weight;
+                }
+            }
+        }
+
         public void AddWeight(Weight weight)
         {
             using (var conn = Connection)
