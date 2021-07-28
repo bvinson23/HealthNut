@@ -12,7 +12,7 @@ export default function Login() {
   const loginSubmit = (e) => {
     e.preventDefault();
     login(email, password)
-      .then(() => history.push("/"))
+      .then(() => history.push("/dashboard"))
       .catch(() => alert("Login Failed"));
   };
 

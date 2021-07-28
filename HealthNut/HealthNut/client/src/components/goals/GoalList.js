@@ -29,7 +29,7 @@ const GoalList = () => {
     }, []);
 
     return (
-        <div className="container">
+        <div className="justified-content-left">
             <Navbar color="light" light expand="md">
                 <NavbarBrand tag={RRNavLink} to="/goals">Goals</NavbarBrand>
                 <NavbarToggler onClick={toggle} />

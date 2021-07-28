@@ -25,13 +25,13 @@ const AddNewMeal = () => {
             window.alert("Please fill in all fields")
         } else {
             addMeal(meal)
-                .then(() => history.push("/meals"))
+                .then(() => history.push("/dashboard"))
         };
     };
 
     const handleCancelSave = (click) => {
         click.preventDefault();
-        history.push("/meals")
+        history.push("/dashboard")
     };
 
     return (

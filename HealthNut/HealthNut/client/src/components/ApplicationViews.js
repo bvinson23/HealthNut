@@ -3,7 +3,6 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Login from "./Login";
 import Register from "./Register";
 import MealList from "./meals/MealList";
-import AddNewMeal from "./meals/MealForm";
 import EditExistingMeal from "./meals/MealEditForm";
 import NoteList from "./notes/NoteList";
 import AddNewNote from "./notes/NoteForm";
@@ -15,6 +14,8 @@ import GoalList from "./goals/GoalList"
 import AddNewGoal from "./goals/GoalForm";
 import EditExistingGoal from "./goals/GoalEditForm";
 import AddNewWeight from "./weights/WeightForm";
+import Dashboard from "./dashboards/Dashboard";
+import DashboardMealForm from "./dashboards/DashboardMealForm";
 
 const ApplicationViews = ({ isLoggedIn }) => {
     return (
@@ -28,12 +29,16 @@ const ApplicationViews = ({ isLoggedIn }) => {
                     <Register />
                 </Route>
 
+                <Route path="/dashboard">
+                    {isLoggedIn ? <Dashboard /> : <Redirect to="/login" />}
+                </Route>
+
                 <Route path="/meals" exact>
                     {isLoggedIn ? <MealList /> : <Redirect to="/login" />}
                 </Route>
 
                 <Route path="/meals/add">
-                    {isLoggedIn ? <AddNewMeal /> : <Redirect to="/login" />}
+                    {isLoggedIn ? <DashboardMealForm /> : <Redirect to="/login" />}
                 </Route>
 
                 <Route path="/meals/edit/:id">

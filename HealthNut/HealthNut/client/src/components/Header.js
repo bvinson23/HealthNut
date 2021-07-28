@@ -20,7 +20,7 @@ const Header = ({ isLoggedIn }) => {
     <>
     <div>
       <Navbar color="dark" dark expand="md">
-        <NavbarBrand tag={RRNavLink} to="/">HealthNut</NavbarBrand>
+        <NavbarBrand tag={RRNavLink} to="/dashboard">HealthNut</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
