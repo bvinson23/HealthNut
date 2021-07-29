@@ -19,12 +19,12 @@ const EditExistingMeal = () => {
     const handleSave = (click) => {
         click.preventDefault();
         editMeal(meal)
-            .then(() => history.push("/meals"))
+            .then(() => history.push("/dashboard"))
     };
 
     const handleCancel = (click) => {
         click.preventDefault();
-        history.push("/meals")
+        history.push("/dashboard")
     };
 
     useEffect(() => {
