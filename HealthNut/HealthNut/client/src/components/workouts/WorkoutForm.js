@@ -25,13 +25,13 @@ const AddNewWorkout = () => {
             window.alert("Please fill in all fields")
         } else {
             addWorkout(workout)
-                .then(() => history.push("/workouts"))
+                .then(() => history.push("/dashboard"))
         };
     };
 
     const handleCancelSave = (click) => {
         click.preventDefault();
-        history.push("/workouts")
+        history.push("/dashboard")
     };
 
     return (

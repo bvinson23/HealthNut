@@ -5,7 +5,7 @@ import MealList from "../meals/MealList";
 import EditExistingMeal from "../meals/MealEditForm";
 import { Col, Container, Row } from "reactstrap";
 
-const Dashboard = () => {
+const DashboardMealEdit = () => {
     return (
         <>
             <Container>
@@ -26,4 +26,4 @@ const Dashboard = () => {
     )
 }
 
-export default Dashboard;
+export default DashboardMealEdit;

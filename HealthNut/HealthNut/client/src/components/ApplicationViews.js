@@ -7,15 +7,15 @@ import NoteList from "./notes/NoteList";
 import AddNewNote from "./notes/NoteForm";
 import EditExistingNote from "./notes/NoteEditForm";
 import WorkoutList from "./workouts/WorkoutList";
-import AddNewWorkout from "./workouts/WorkoutForm";
-import EditExistingWorkout from "./workouts/WorkoutEditForm";
 import GoalList from "./goals/GoalList"
 import AddNewGoal from "./goals/GoalForm";
 import EditExistingGoal from "./goals/GoalEditForm";
 import AddNewWeight from "./weights/WeightForm";
 import Dashboard from "./dashboards/Dashboard";
 import DashboardMealForm from "./dashboards/DashboardMealForm";
-import DashboardMealEditForm from "./dashboards/DashboardMealEditForm";
+import DashboardMealEdit from "./dashboards/DashboardMealEditForm";
+import DashboardWorkoutForm from "./dashboards/DashboardWorkoutForm";
+import DashboardWorkoutEdit from "./dashboards/DashboardWorkoutEditForm";
 
 const ApplicationViews = ({ isLoggedIn }) => {
     return (
@@ -42,7 +42,7 @@ const ApplicationViews = ({ isLoggedIn }) => {
                 </Route>
 
                 <Route path="/meals/edit/:id">
-                    {isLoggedIn ? <DashboardMealEditForm /> : <Redirect to="/login" />}
+                    {isLoggedIn ? <DashboardMealEdit /> : <Redirect to="/login" />}
                 </Route>
 
                 <Route path="/notes" exact>
@@ -62,11 +62,11 @@ const ApplicationViews = ({ isLoggedIn }) => {
                 </Route>
 
                 <Route path="/workouts/add">
-                    {isLoggedIn ? <AddNewWorkout /> : <Redirect to="/login" />}
+                    {isLoggedIn ? <DashboardWorkoutForm /> : <Redirect to="/login" />}
                 </Route>
 
                 <Route path="/workouts/edit/:id">
-                    {isLoggedIn ? <EditExistingWorkout /> : <Redirect to="/login" />}
+                    {isLoggedIn ? <DashboardWorkoutEdit /> : <Redirect to="/login" />}
                 </Route>
                 
                 <Route path="/goals" exact>

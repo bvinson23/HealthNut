@@ -1,11 +1,11 @@
 import React from "react";
 import GoalList from "../goals/GoalList";
 import NoteList from "../notes/NoteList";
-import MealList from "../meals/MealList";
-import AddNewMeal from "../meals/MealForm";
+import WorkoutList from "../workouts/WorkoutList";
+import AddNewWorkout from "../workouts/WorkoutForm";
 import { Col, Container, Row } from "reactstrap";
 
-const DashboardMealForm = () => {
+const DashboardWorkoutForm = () => {
     return (
         <>
             <Container>
@@ -15,10 +15,10 @@ const DashboardMealForm = () => {
                         {NoteList()}
                     </Col>
                     <Col>
-                        {AddNewMeal()}
+                        {AddNewWorkout()}
                     </Col>
                     <Col sm="5">
-                        {MealList()}
+                        {WorkoutList()}
                     </Col>
                 </Row>
             </Container>
@@ -26,4 +26,4 @@ const DashboardMealForm = () => {
     )
 }
 
-export default DashboardMealForm;
+export default DashboardWorkoutForm;
