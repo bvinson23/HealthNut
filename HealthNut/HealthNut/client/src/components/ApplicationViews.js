@@ -8,7 +8,6 @@ import WorkoutList from "./workouts/WorkoutList";
 import GoalList from "./goals/GoalList"
 import AddNewGoal from "./goals/GoalForm";
 import EditExistingGoal from "./goals/GoalEditForm";
-import AddNewWeight from "./weights/WeightForm";
 import Dashboard from "./dashboards/Dashboard";
 import DashboardMealForm from "./dashboards/DashboardMealForm";
 import DashboardMealEdit from "./dashboards/DashboardMealEditForm";
@@ -16,6 +15,7 @@ import DashboardWorkoutForm from "./dashboards/DashboardWorkoutForm";
 import DashboardWorkoutEdit from "./dashboards/DashboardWorkoutEditForm";
 import DashboardNoteForm from "./dashboards/DashboardNoteForm";
 import DashboardNoteEdit from "./dashboards/DashboardNoteEditForm";
+import DashboardWeighIn from "./dashboards/DashboardWeighIn";
 
 const ApplicationViews = ({ isLoggedIn }) => {
     return (
@@ -82,7 +82,7 @@ const ApplicationViews = ({ isLoggedIn }) => {
                 </Route>
 
                 <Route path="/weight/add">
-                    {isLoggedIn ? <AddNewWeight /> : <Redirect to="/login" />}
+                    {isLoggedIn ? <DashboardWeighIn /> : <Redirect to="/login" />}
                 </Route>
             </Switch>
         </main>

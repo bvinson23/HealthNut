@@ -20,12 +20,12 @@ const AddNewWeight = () => {
     const handleSave = (click) => {
         click.preventDefault();
         addWeight(weight)
-            .then(() => history.push("/goals"))
+            .then(() => history.push("/dashboard"))
     };
 
     const handleCancelSave = (click) => {
         click.preventDefault();
-        history.push("/goals")
+        history.push("/dashboard")
     };
 
     return (
