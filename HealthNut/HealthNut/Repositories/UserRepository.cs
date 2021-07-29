@@ -164,11 +164,13 @@ namespace HealthNut.Repositories
                     cmd.CommandText = @"
                         UPDATE Users
                             SET Name = @Name,
-                                Email = @Email
+                                Email = @Email,
+                                GoalWeight = @GoalWeight
                         WHERE Id = @Id";
 
                     DbUtils.AddParameter(cmd, "@Name", user.Name);
                     DbUtils.AddParameter(cmd, "@Email", user.Email);
+                    DbUtils.AddParameter(cmd, "@GoalWeight", user.GoalWeight);
                     DbUtils.AddParameter(cmd, "@Id", user.Id);
 
                     cmd.ExecuteNonQuery();

@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardBody, Button, Jumbotron, Col } from "reactstrap";
+import { Button, Jumbotron, Col } from "reactstrap";
 import { useHistory } from "react-router-dom";
 
 const BigButtons = () => {

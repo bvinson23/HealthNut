@@ -5,9 +5,7 @@ import Register from "./Register";
 import MealList from "./meals/MealList";
 import NoteList from "./notes/NoteList";
 import WorkoutList from "./workouts/WorkoutList";
-import GoalList from "./goals/GoalList"
-import AddNewGoal from "./goals/GoalForm";
-// import EditExistingGoal from "./goals/GoalEditForm";
+import UpdateGoal from "./goals/GoalUpdateForm";
 import Dashboard from "./dashboards/Dashboard";
 import DashboardMealForm from "./dashboards/DashboardMealForm";
 import DashboardMealEdit from "./dashboards/DashboardMealEditForm";
@@ -68,18 +66,10 @@ const ApplicationViews = ({ isLoggedIn }) => {
                 <Route path="/workouts/edit/:id">
                     {isLoggedIn ? <DashboardWorkoutEdit /> : <Redirect to="/login" />}
                 </Route>
-                
-                <Route path="/goals" exact>
-                    {isLoggedIn ? <GoalList /> : <Redirect to="/login" />}
-                </Route>
 
-                <Route path="/goals/add">
-                    {isLoggedIn ? <AddNewGoal /> : <Redirect to="/login" />}
+                <Route path="/goals/edit/:id">
+                    {isLoggedIn ? <UpdateGoal /> : <Redirect to="/login" />}
                 </Route>
-
-                {/* <Route path="/goals/edit/:id">
-                    {isLoggedIn ? <EditExistingGoal /> : <Redirect to="/login" />}
-                </Route> */}
 
                 <Route path="/weight/add">
                     {isLoggedIn ? <DashboardWeighIn /> : <Redirect to="/login" />}

@@ -17,9 +17,7 @@ const GoalList = () => {
     };
 
     const getWeight = () => {
-        getRecentWeight().then(
-            weight.length === 0 ? setWeight(0) :
-        weight => setWeight(weight));
+        getRecentWeight().then(weight => setWeight(weight));
     };
 
     useEffect(() => {

@@ -1,33 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { addGoal } from "../../modules/goalManager";
+import { getCurrentUser, updateCurrentUser } from "../../modules/authManager";
 import { Form, FormGroup, Button, Container } from "reactstrap";
 
-const AddNewGoal = () => {
-    const [goal, setGoal] = useState({
-        weight: 0,
-        targetDate: ""
-    });
+const UpdateGoal = () => {
+    const [user, setUser] = useState({});
 
     const history = useHistory();
 
+    const getUser = () => {
+        getCurrentUser().then(user => setUser(user));
+    };
+
     const handleInputChange = (evt) => {
-        const newGoal = { ...goal }
+        const editedUser = { ...user }
         let selectedValue = evt.target.value
-        newGoal[evt.target.id] = selectedValue
-        setGoal(newGoal)
+        editedUser[evt.target.id] = selectedValue
+        setUser(editedUser)
     };
 
     const handleSave = (click) => {
         click.preventDefault();
-        addGoal(goal)
-            .then(() => history.push("/goals"))
+        updateCurrentUser(user)
+            .then(() => history.push("/dashboard"))
     };
 
     const handleCancelSave = (click) => {
         click.preventDefault();
-        history.push("/goals")
+        history.push("/dashboard")
     };
+
+    useEffect(() => {
+        getUser()
+    }, []);
 
     return (
         <Container className="justified-content-center">
@@ -35,23 +40,12 @@ const AddNewGoal = () => {
                 <FormGroup>
                     <label>Weight Goal</label>
                     <input type="text"
-                        id="weight"
+                        id="goalWeight"
                         onChange={handleInputChange}
                         required
                         autoComplete="off"
                         className="form-control"
-                        placeholder="Weight Goal..."
-                        value={goal.weight} />
-                </FormGroup>
-                <FormGroup>
-                    <label>Target Date</label>
-                    <input type="date"
-                        id="targetDate"
-                        onChange={handleInputChange}
-                        required
-                        autoComplete="off"
-                        className="form-control"
-                        value={goal.targetDate} />
+                        defaultValue={user.goalWeight} />
                 </FormGroup>
             </Form>
             <Button className="article-btn"
@@ -63,4 +57,4 @@ const AddNewGoal = () => {
     )
 };
 
-export default AddNewGoal;
+export default UpdateGoal;
