@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { addNote } from "../../modules/noteManager";
-import { Form, FormGroup, Button, Container } from "reactstrap";
+import { Form, FormGroup, Button, Container, Col, Input } from "reactstrap";
 
 const AddNewNote = () => {
     const [note, setNote] = useState({
@@ -23,21 +23,23 @@ const AddNewNote = () => {
             window.alert("Please fill in all fields")
         } else {
             addNote(note)
-                .then(() => history.push("/notes"))
+                .then(() => history.push("/dashboard"))
         };
     };
 
     const handleCancelSave = (click) => {
         click.preventDefault();
-        history.push("/notes")
+        history.push("/dashboard")
     };
 
     return (
         <Container className="justified-content-center">
             <Form>
+                <Col>
+                    <h3>Add A New Note</h3>
+                </Col>
                 <FormGroup>
-                    <label>Content</label>
-                    <input type="text"
+                    <Input type="textarea"
                         id="content"
                         onChange={handleInputChange}
                         required

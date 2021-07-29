@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { editNote, getNoteById } from "../../modules/noteManager";
-import { Form, FormGroup, Button, Container } from "reactstrap";
+import { Form, FormGroup, Button, Container, Col, Input } from "reactstrap";
 
 const EditExistingNote = () => {
     const [note, setNote] = useState({});
@@ -19,12 +19,12 @@ const EditExistingNote = () => {
     const handleSave = (click) => {
         click.preventDefault();
         editNote(note)
-            .then(() => history.push("/notes"))
+            .then(() => history.push("/dashboard"))
     };
 
     const handleCancel = (click) => {
         click.preventDefault();
-        history.push("/notes")
+        history.push("/dashboard")
     };
 
     useEffect(() => {
@@ -34,9 +34,12 @@ const EditExistingNote = () => {
     return (
         <Container className="justified-content-center">
             <Form>
+            <Col>
+                    <h3>Edit A Note</h3>
+                </Col>
                 <FormGroup>
                     <label>Content</label>
-                    <input type="text"
+                    <Input type="textarea"
                         id="content"
                         onChange={handleInputChange}
                         required
