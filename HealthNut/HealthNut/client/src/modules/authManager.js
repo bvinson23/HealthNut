@@ -26,6 +26,23 @@ const _saveUser = (userProfile) => {
     }).then(resp => resp.json()));
 };
 
+export const getCurrentUser = () => {
+  return getToken().then((token) => {
+    return fetch(`${_apiUrl}/GetCurrentUser`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then(res => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        throw new Error("An unknown error occurred while getting the current user.");
+      }
+    });
+  });
+};
+
 
 export const getToken = () => {
   const currentUser = firebase.auth().currentUser;

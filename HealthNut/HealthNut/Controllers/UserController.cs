@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace HealthNut.Controllers
@@ -23,6 +24,13 @@ namespace HealthNut.Controllers
         public IActionResult Get()
         {
             return Ok(_userRepository.GetAllUsers());
+        }
+
+        [HttpGet("GetCurrentUser")]
+        public Users GetCurrentUser()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userRepository.GetByFirebaseUserId(firebaseUserId);
         }
 
         [HttpGet("{id}")]

@@ -7,7 +7,7 @@ import NoteList from "./notes/NoteList";
 import WorkoutList from "./workouts/WorkoutList";
 import GoalList from "./goals/GoalList"
 import AddNewGoal from "./goals/GoalForm";
-import EditExistingGoal from "./goals/GoalEditForm";
+// import EditExistingGoal from "./goals/GoalEditForm";
 import Dashboard from "./dashboards/Dashboard";
 import DashboardMealForm from "./dashboards/DashboardMealForm";
 import DashboardMealEdit from "./dashboards/DashboardMealEditForm";
@@ -77,9 +77,9 @@ const ApplicationViews = ({ isLoggedIn }) => {
                     {isLoggedIn ? <AddNewGoal /> : <Redirect to="/login" />}
                 </Route>
 
-                <Route path="/goals/edit/:id">
+                {/* <Route path="/goals/edit/:id">
                     {isLoggedIn ? <EditExistingGoal /> : <Redirect to="/login" />}
-                </Route>
+                </Route> */}
 
                 <Route path="/weight/add">
                     {isLoggedIn ? <DashboardWeighIn /> : <Redirect to="/login" />}

@@ -101,6 +101,8 @@ export const getRecentWeight = () => {
         }).then(res => {
             if (res.ok) {
                 return res.json();
+            } else if (res.status === 404) {
+                return 0;
             } else {
                 throw new Error("An unknown error occurred while trying to get your weight.");
             }

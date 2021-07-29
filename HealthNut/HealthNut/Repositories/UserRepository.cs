@@ -42,7 +42,7 @@ namespace HealthNut.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                         SELECT Id, FirebaseUserId, [Name], Email
+                         SELECT Id, FirebaseUserId, [Name], Email, GoalWeight
                           FROM Users
                     ";
                     var reader = cmd.ExecuteReader();
@@ -55,6 +55,7 @@ namespace HealthNut.Repositories
                             FirebaseUserId = DbUtils.GetString(reader, "FirebaseUserId"),
                             Name = DbUtils.GetString(reader, "Name"),
                             Email = DbUtils.GetString(reader, "Email"),
+                            GoalWeight = DbUtils.GetInt(reader, "GoalWeight"),
                         };
                         AllUsers.Add(user);
                     };
@@ -72,7 +73,7 @@ namespace HealthNut.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                         SELECT Id, FirebaseUserId, Name, Email
+                         SELECT Id, FirebaseUserId, Name, Email, GoalWeight
                           FROM Users
                           WHERE Id = @id
                     ";
@@ -87,6 +88,7 @@ namespace HealthNut.Repositories
                             FirebaseUserId = DbUtils.GetString(reader, "FirebaseUserId"),
                             Name = DbUtils.GetString(reader, "Name"),
                             Email = DbUtils.GetString(reader, "Email"),
+                            GoalWeight = DbUtils.GetInt(reader, "GoalWeight"),
                         };
                     };
                     conn.Close();
@@ -103,7 +105,7 @@ namespace HealthNut.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT Id, FirebaseUserId, [Name], Email
+                        SELECT Id, FirebaseUserId, [Name], Email, GoalWeight
                           FROM Users
                          WHERE FirebaseUserId = @FirebaseuserId";
 
@@ -120,6 +122,7 @@ namespace HealthNut.Repositories
                             FirebaseUserId = DbUtils.GetString(reader, "FirebaseUserId"),
                             Name = DbUtils.GetString(reader, "Name"),
                             Email = DbUtils.GetString(reader, "Email"),
+                            GoalWeight = DbUtils.GetInt(reader, "GoalWeight"),
                         };
                     }
                     reader.Close();
@@ -137,15 +140,15 @@ namespace HealthNut.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        INSERT INTO Users ([Name], Email, FirebaseUserId)
+                        INSERT INTO Users ([Name], Email, FirebaseUserId, GoalWeight)
                         OUTPUT INSERTED.ID
-                        VALUES (@Name, @Email, @FirebaseUserId)
+                        VALUES (@Name, @Email, @FirebaseUserId, @GoalWeight)
                     ";
 
                     DbUtils.AddParameter(cmd, "@Name", user.Name);
                     DbUtils.AddParameter(cmd, "@Email", user.Email);
                     DbUtils.AddParameter(cmd, "@FirebaseUserId", user.FirebaseUserId);
-
+                    DbUtils.AddParameter(cmd, "@GoalWeight", user.GoalWeight);
                     user.Id = (int)cmd.ExecuteScalar();
                 }
             }
@@ -161,7 +164,7 @@ namespace HealthNut.Repositories
                     cmd.CommandText = @"
                         UPDATE Users
                             SET Name = @Name,
-                                Email = @Email,
+                                Email = @Email
                         WHERE Id = @Id";
 
                     DbUtils.AddParameter(cmd, "@Name", user.Name);

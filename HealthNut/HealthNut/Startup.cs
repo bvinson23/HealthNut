@@ -75,7 +75,6 @@ namespace HealthNut
             services.AddTransient<IMealsRepository, MealsRepository>();
             services.AddTransient<INotesRepository, NotesRepository>();
             services.AddTransient<IWorkoutsRepository, WorkoutsRepository>();
-            services.AddTransient<IGoalsRepository, GoalsRepository>();
             services.AddTransient<IWeightRepository, WeightRepository>();
         }
 
