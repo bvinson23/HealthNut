@@ -9,8 +9,8 @@ const Goal = ({ user, weight }) => {
         <Card>
             <CardBody>
                 <div className="GoalList">
-                    <Row>Weight Goal: {user.goalWeight}</Row>
-                    <Row>Current Weight: {weight?.currentWeight}</Row>
+                    <Row>Weight Goal: {user.goalWeight} lbs</Row>
+                    <Row>Current Weight: {weight?.currentWeight} lbs</Row>
                     <Button onClick={() => history.push(`/goals/edit/${user.id}`)} style={{width: "5em", marginLeft: ".5rem"}}>Update Goal</Button>
                     <Button onClick={() => history.push("/weight/add")} style={{width: "5em", marginLeft: ".5rem"}}>Weigh In</Button>
                 </div>

@@ -39,7 +39,7 @@ const AddNewWeight = () => {
                         required
                         autoComplete="off"
                         className="form-control"
-                        placeholder="Current Weight..."
+                        placeholder="Current Weight (lbs)..."
                         value={weight.currentWeight} />
                 </FormGroup>
             </Form>

@@ -26,9 +26,9 @@ const Header = ({ isLoggedIn }) => {
           <Nav className="mr-auto" navbar>
             {isLoggedIn &&
               <>
-                {/* <NavItem>
-                  <NavLink tag={RRNavLink} to="/videos/add">New Video</NavLink>
-                </NavItem> */}
+                <NavItem>
+                  <NavLink tag={RRNavLink} to="/workouts">Workouts</NavLink>
+                </NavItem>
                 <NavItem>
                   <a aria-current="page" className="nav-link"
                     style={{ cursor: "pointer" }} onClick={logout}>Logout</a>
