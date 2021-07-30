@@ -11,14 +11,14 @@ const Dashboard = () => {
             <Container>
                 <Row>
                     <Col sm="3">
-                        {GoalList()}
-                        {NoteList()}
+                        <GoalList />
+                        <NoteList />
                     </Col>
                     <Col>
-                        {BigButtons()}
+                        <BigButtons />
                     </Col>
                     <Col sm="5">
-                        {MealList()}
+                        <MealList />
                     </Col>
                 </Row>
             </Container>

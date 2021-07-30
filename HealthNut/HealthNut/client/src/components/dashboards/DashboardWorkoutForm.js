@@ -11,14 +11,14 @@ const DashboardWorkoutForm = () => {
             <Container>
                 <Row>
                     <Col sm="3">
-                        {GoalList()}
-                        {NoteList()}
+                        <GoalList />
+                        <NoteList />
                     </Col>
                     <Col>
-                        {AddNewWorkout()}
+                        <AddNewWorkout />
                     </Col>
                     <Col sm="5">
-                        {WorkoutList()}
+                        <WorkoutList />
                     </Col>
                 </Row>
             </Container>
