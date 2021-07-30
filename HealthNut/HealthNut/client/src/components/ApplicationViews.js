@@ -3,18 +3,17 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Login from "./Login";
 import Register from "./Register";
 import MealList from "./meals/MealList";
-import AddNewMeal from "./meals/MealForm";
-import EditExistingMeal from "./meals/MealEditForm";
 import NoteList from "./notes/NoteList";
-import AddNewNote from "./notes/NoteForm";
-import EditExistingNote from "./notes/NoteEditForm";
 import WorkoutList from "./workouts/WorkoutList";
-import AddNewWorkout from "./workouts/WorkoutForm";
-import EditExistingWorkout from "./workouts/WorkoutEditForm";
-import GoalList from "./goals/GoalList"
-import AddNewGoal from "./goals/GoalForm";
-import EditExistingGoal from "./goals/GoalEditForm";
-import AddNewWeight from "./weights/WeightForm";
+import UpdateGoal from "./goals/GoalUpdateForm";
+import Dashboard from "./dashboards/Dashboard";
+import DashboardMealForm from "./dashboards/DashboardMealForm";
+import DashboardMealEdit from "./dashboards/DashboardMealEditForm";
+import DashboardWorkoutForm from "./dashboards/DashboardWorkoutForm";
+import DashboardWorkoutEdit from "./dashboards/DashboardWorkoutEditForm";
+import DashboardNoteForm from "./dashboards/DashboardNoteForm";
+import DashboardNoteEdit from "./dashboards/DashboardNoteEditForm";
+import DashboardWeighIn from "./dashboards/DashboardWeighIn";
 
 const ApplicationViews = ({ isLoggedIn }) => {
     return (
@@ -28,16 +27,20 @@ const ApplicationViews = ({ isLoggedIn }) => {
                     <Register />
                 </Route>
 
+                <Route path="/dashboard">
+                    {isLoggedIn ? <Dashboard /> : <Redirect to="/login" />}
+                </Route>
+
                 <Route path="/meals" exact>
                     {isLoggedIn ? <MealList /> : <Redirect to="/login" />}
                 </Route>
 
                 <Route path="/meals/add">
-                    {isLoggedIn ? <AddNewMeal /> : <Redirect to="/login" />}
+                    {isLoggedIn ? <DashboardMealForm /> : <Redirect to="/login" />}
                 </Route>
 
                 <Route path="/meals/edit/:id">
-                    {isLoggedIn ? <EditExistingMeal /> : <Redirect to="/login" />}
+                    {isLoggedIn ? <DashboardMealEdit /> : <Redirect to="/login" />}
                 </Route>
 
                 <Route path="/notes" exact>
@@ -45,11 +48,11 @@ const ApplicationViews = ({ isLoggedIn }) => {
                 </Route>
 
                 <Route path="/notes/add">
-                    {isLoggedIn ? <AddNewNote /> : <Redirect to="/login" />}
+                    {isLoggedIn ? <DashboardNoteForm /> : <Redirect to="/login" />}
                 </Route>
 
                 <Route path="/notes/edit/:id">
-                    {isLoggedIn ? <EditExistingNote /> : <Redirect to="/login" />}
+                    {isLoggedIn ? <DashboardNoteEdit /> : <Redirect to="/login" />}
                 </Route>
 
                 <Route path="/workouts" exact>
@@ -57,27 +60,19 @@ const ApplicationViews = ({ isLoggedIn }) => {
                 </Route>
 
                 <Route path="/workouts/add">
-                    {isLoggedIn ? <AddNewWorkout /> : <Redirect to="/login" />}
+                    {isLoggedIn ? <DashboardWorkoutForm /> : <Redirect to="/login" />}
                 </Route>
 
                 <Route path="/workouts/edit/:id">
-                    {isLoggedIn ? <EditExistingWorkout /> : <Redirect to="/login" />}
-                </Route>
-                
-                <Route path="/goals" exact>
-                    {isLoggedIn ? <GoalList /> : <Redirect to="/login" />}
-                </Route>
-
-                <Route path="/goals/add">
-                    {isLoggedIn ? <AddNewGoal /> : <Redirect to="/login" />}
+                    {isLoggedIn ? <DashboardWorkoutEdit /> : <Redirect to="/login" />}
                 </Route>
 
                 <Route path="/goals/edit/:id">
-                    {isLoggedIn ? <EditExistingGoal /> : <Redirect to="/login" />}
+                    {isLoggedIn ? <UpdateGoal /> : <Redirect to="/login" />}
                 </Route>
 
                 <Route path="/weight/add">
-                    {isLoggedIn ? <AddNewWeight /> : <Redirect to="/login" />}
+                    {isLoggedIn ? <DashboardWeighIn /> : <Redirect to="/login" />}
                 </Route>
             </Switch>
         </main>

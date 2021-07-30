@@ -26,6 +26,43 @@ const _saveUser = (userProfile) => {
     }).then(resp => resp.json()));
 };
 
+export const getCurrentUser = () => {
+  return getToken().then((token) => {
+    return fetch(`${_apiUrl}/GetCurrentUser`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then(res => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        throw new Error("An unknown error occurred while getting the current user.");
+      }
+    });
+  });
+};
+
+export const updateCurrentUser = (user) => {
+  return getToken().then((token) => {
+    return fetch(`${_apiUrl}/${user.id}`, {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(user)
+    }).then(res => {
+      if (res.ok) {
+        return;
+      } else if (res.status === 401) {
+        throw new Error("Unauthorized");
+      } else {
+        throw new Error("An unknown error occurred while updating the user.");
+      }
+    });
+  });
+};
 
 export const getToken = () => {
   const currentUser = firebase.auth().currentUser;

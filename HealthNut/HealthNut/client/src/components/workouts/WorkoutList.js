@@ -25,7 +25,7 @@ const WorkoutList = () => {
     return (
         <div className="container">
             <Navbar color="light" light expand="md">
-                <NavbarBrand tag={RRNavLink} to="/workouts">Workouts</NavbarBrand>
+                <NavbarBrand tag={RRNavLink} to="/workouts">Recent Workouts</NavbarBrand>
                 <NavbarToggler onClick={toggle} />
             </Navbar>
             {workouts.map((workout) => (

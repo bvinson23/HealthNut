@@ -48,6 +48,10 @@ namespace HealthNut.Controllers
             else
             {
                 var weight = _weightRepository.GetMostRecentWeight(user);
+                if (weight == null)
+                {
+                    return NotFound();
+                }
                 return Ok(weight);
             }
         }

@@ -20,12 +20,12 @@ const AddNewWeight = () => {
     const handleSave = (click) => {
         click.preventDefault();
         addWeight(weight)
-            .then(() => history.push("/goals"))
+            .then(() => history.push("/dashboard"))
     };
 
     const handleCancelSave = (click) => {
         click.preventDefault();
-        history.push("/goals")
+        history.push("/dashboard")
     };
 
     return (
@@ -39,7 +39,7 @@ const AddNewWeight = () => {
                         required
                         autoComplete="off"
                         className="form-control"
-                        placeholder="Current Weight..."
+                        placeholder="Current Weight (lbs)..."
                         value={weight.currentWeight} />
                 </FormGroup>
             </Form>

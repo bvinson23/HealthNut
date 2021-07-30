@@ -1,16 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { addMeal } from "../../modules/mealManager";
+import { addMeal, getMealCategories } from "../../modules/mealManager";
 import { Form, FormGroup, Button, Container } from "reactstrap";
 
 const AddNewMeal = () => {
     const [meal, setMeal] = useState({
         name: "",
-        calories: 0,
+        calories: "",
         mealCategoryId: 0
     });
+    const [categories, setCategories] = useState([]);
 
     const history = useHistory();
+
+    const getCategories = () => {
+        getMealCategories().then(categories => setCategories(categories));
+    }
 
     const handleInputChange = (evt) => {
         const newMeal = { ...meal }
@@ -25,14 +30,18 @@ const AddNewMeal = () => {
             window.alert("Please fill in all fields")
         } else {
             addMeal(meal)
-                .then(() => history.push("/meals"))
+                .then(() => history.push("/dashboard"))
         };
     };
 
     const handleCancelSave = (click) => {
         click.preventDefault();
-        history.push("/meals")
+        history.push("/dashboard")
     };
+
+    useEffect(() => {
+        getCategories();
+    }, []);
 
     return (
         <Container className="justified-content-center">
@@ -61,14 +70,18 @@ const AddNewMeal = () => {
                 </FormGroup>
                 <FormGroup>
                     <label>Meal</label>
-                    <input type="text"
+                    <select type="select"
                         id="mealCategoryId"
                         onChange={handleInputChange}
                         required
                         autoComplete="off"
                         className="form-control"
                         placeholder="Choose your meal"
-                        value={meal.mealCategoryId} />
+                        value={meal.mealCategoryId}>
+                        <option value="0">Select a meal</option>
+                        {categories.map(cat => (
+                            <option key={cat.id} value={cat.id}>{cat.name}</option>
+                        ))} </select>
                 </FormGroup>
             </Form>
             <Button className="article-btn"

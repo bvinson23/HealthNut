@@ -20,15 +20,15 @@ const Header = ({ isLoggedIn }) => {
     <>
     <div>
       <Navbar color="dark" dark expand="md">
-        <NavbarBrand tag={RRNavLink} to="/">HealthNut</NavbarBrand>
+        <NavbarBrand tag={RRNavLink} to="/dashboard">HealthNut</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             {isLoggedIn &&
               <>
-                {/* <NavItem>
-                  <NavLink tag={RRNavLink} to="/videos/add">New Video</NavLink>
-                </NavItem> */}
+                <NavItem>
+                  <NavLink tag={RRNavLink} to="/workouts">Workouts</NavLink>
+                </NavItem>
                 <NavItem>
                   <a aria-current="page" className="nav-link"
                     style={{ cursor: "pointer" }} onClick={logout}>Logout</a>

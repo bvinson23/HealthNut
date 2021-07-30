@@ -11,5 +11,6 @@ namespace HealthNut.Models
         public string FirebaseUserId { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
+        public int GoalWeight { get; set; }
     }
 }

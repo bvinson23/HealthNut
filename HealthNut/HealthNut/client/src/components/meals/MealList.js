@@ -25,7 +25,7 @@ const MealList = () => {
     return (
         <div className="container">
             <Navbar color="light" light expand="md">
-                <NavbarBrand tag={RRNavLink} to="/meals">Meals</NavbarBrand>
+                <NavbarBrand tag={RRNavLink} to="/meals">Recent Meals</NavbarBrand>
                 <NavbarToggler onClick={toggle} />
             </Navbar>
             {meals.map((meal) => (

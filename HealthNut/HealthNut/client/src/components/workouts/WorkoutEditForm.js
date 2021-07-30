@@ -19,12 +19,12 @@ const EditExistingWorkout = () => {
     const handleSave = (click) => {
         click.preventDefault();
         editWorkout(workout)
-            .then(() => history.push("/workouts"))
+            .then(() => history.push("/dashboard"))
     };
 
     const handleCancel = (click) => {
         click.preventDefault();
-        history.push("/workouts")
+        history.push("/dashboard")
     };
 
     useEffect(() => {
