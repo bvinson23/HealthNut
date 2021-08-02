@@ -52,7 +52,7 @@ namespace HealthNut.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT m.Id, m.UserId, m.[Name], m.Calories, m.MealCategoryId,
+                        SELECT m.Id, m.UserId, m.[Name], m.Calories, m.MealCategoryId, m.MealDate,
                                mc.Name AS CategoryName,
                                u.Name AS UserName, u.Email
                         FROM Meals m
