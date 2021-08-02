@@ -16,7 +16,7 @@ const Meal = ({ meal, getMeals }) => {
     return (
         <Card>
             <CardBody>
-                <div className="container">
+                <div className="container text-left">
                     <p className="text-left">Meal: {meal.mealCategory.name}</p>
                     <p className="text-left">Calories: {meal.calories}</p>
                     <p className="text-left">Description: {meal.name}</p>

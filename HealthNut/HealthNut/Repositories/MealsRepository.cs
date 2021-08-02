@@ -27,6 +27,7 @@ namespace HealthNut.Repositories
                         FROM Meals m
                         JOIN MealCategories mc on mc.Id = m.MealCategoryId
                         JOIN Users u ON u.Id = m.UserId
+                        ORDER BY m.Id DESC
                     ";
 
                     var reader = cmd.ExecuteReader();
