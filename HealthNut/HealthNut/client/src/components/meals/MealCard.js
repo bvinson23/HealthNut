@@ -16,10 +16,10 @@ const Meal = ({ meal, getMeals }) => {
     return (
         <Card>
             <CardBody>
-                <div className="MealList">
-                    <label style={{ width: "10em" }}>Meal: {meal.mealCategory.name}</label>
-                    <label style={{ width: "10em" }}>Calories: {meal.calories}</label>
-                    <label style={{ width: "10em" }}>Description: {meal.name}</label>
+                <div className="container">
+                    <p className="text-left">Meal: {meal.mealCategory.name}</p>
+                    <p className="text-left">Calories: {meal.calories}</p>
+                    <p className="text-left">Description: {meal.name}</p>
                     <Button onClick={() => history.push(`/meals/edit/${meal.id}`)} style={{width: "5em", marginLeft: ".5rem"}}>Edit</Button>
                     <Button onClick={deleteSelectedMeal} style={{width: "5em", marginLeft: ".5rem"}}>Delete</Button>
                 </div>

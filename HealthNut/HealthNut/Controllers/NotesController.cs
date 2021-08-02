@@ -27,16 +27,8 @@ namespace HealthNut.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var user = GetCurrentFirebaseUserId();
-            if (user == null)
-            {
-                return Unauthorized();
-            }
-            else
-            {
-                var notes = _notesRepository.GetAllUserNotes(user);
-                return Ok(notes);
-            }
+            var notes = _notesRepository.GetAllUserNotes();
+            return Ok(notes);
         }
 
         [HttpGet("{id}")]

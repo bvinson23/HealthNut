@@ -13,6 +13,7 @@ firebase.initializeApp(firebaseConfig);
 
 ReactDOM.render(
   <React.StrictMode>
+    <div></div>
     <App />
   </React.StrictMode>,
   document.getElementById('root')

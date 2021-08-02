@@ -23,35 +23,27 @@ namespace HealthNut.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var user = GetCurrentFirebaseUserId();
-            if (user == null)
-            {
-                return Unauthorized();
-            }
-            else
-            {
-                var weights = _weightRepository.GetAllUserWeights(user);
+            //var user = GetCurrentFirebaseUserId();
+            //if (user == null)
+            //{
+            //    return Unauthorized();
+            //}
+            //else
+            //{
+            //}
+                var weights = _weightRepository.GetAllUserWeights();
                 return Ok(weights);
-            }
         }
 
         [HttpGet("GetRecent")]
         public IActionResult GetMostRecentWeight()
         {
-            var user = GetCurrentFirebaseUserId();
-            if (user == null)
-            {
-                return Unauthorized();
-            }
-            else
-            {
-                var weight = _weightRepository.GetMostRecentWeight(user);
+                var weight = _weightRepository.GetMostRecentWeight();
                 if (weight == null)
                 {
                     return NotFound();
                 }
                 return Ok(weight);
-            }
         }
 
         [HttpGet("{id}")]
@@ -98,20 +90,6 @@ namespace HealthNut.Controllers
         {
             _weightRepository.DeleteWeight(id);
             return NoContent();
-        }
-
-        private string GetCurrentFirebaseUserId()
-        {
-            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-
-            if (firebaseUserId != null)
-            {
-                return firebaseUserId;
-            }
-            else
-            {
-                return null;
-            }
         }
 
         private Users GetCurrentUser()

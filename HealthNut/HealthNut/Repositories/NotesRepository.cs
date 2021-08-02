@@ -13,7 +13,7 @@ namespace HealthNut.Repositories
     {
         public NotesRepository(IConfiguration configuration) : base(configuration) { }
 
-        public List<Notes> GetAllUserNotes(string firebaseUserId)
+        public List<Notes> GetAllUserNotes()
         {
             using (var conn = Connection)
             {
@@ -25,10 +25,8 @@ namespace HealthNut.Repositories
                                u.Name, u.Email
                         FROM Notes n
                         JOIN Users u ON u.Id = n.UserId
-                        WHERE u.FirebaseUserId = @FirebaseUserId
                     ";
 
-                    DbUtils.AddParameter(cmd, "@FirebaseUserId", firebaseUserId);
                     var reader = cmd.ExecuteReader();
                     var notes = new List<Notes>();
                     while (reader.Read())

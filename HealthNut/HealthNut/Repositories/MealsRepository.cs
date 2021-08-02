@@ -13,7 +13,7 @@ namespace HealthNut.Repositories
     {
         public MealsRepository(IConfiguration configuration) : base(configuration) { }
 
-        public List<Meals> GetAllUserMeals(string firebaseUserId)
+        public List<Meals> GetAllUserMeals()
         {
             using (var conn = Connection)
             {
@@ -27,10 +27,8 @@ namespace HealthNut.Repositories
                         FROM Meals m
                         JOIN MealCategories mc on mc.Id = m.MealCategoryId
                         JOIN Users u ON u.Id = m.UserId
-                        WHERE u.FirebaseUserId = @FirebaseUserId
                     ";
 
-                    DbUtils.AddParameter(cmd, "@FirebaseUserId", firebaseUserId);
                     var reader = cmd.ExecuteReader();
                     var meals = new List<Meals>();
                     while (reader.Read())
