@@ -25,6 +25,7 @@ namespace HealthNut.Repositories
                                u.Name AS UserName, u.Email
                         FROM Workouts w
                         JOIN Users u ON u.Id = w.UserId
+                        ORDER BY w.Id DESC
                     ";
 
                     var reader = cmd.ExecuteReader();

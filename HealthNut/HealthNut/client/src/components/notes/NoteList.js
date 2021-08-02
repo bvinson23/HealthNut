@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink as RRNavLink, useHistory } from "react-router-dom";
-import { Navbar, NavbarToggler, NavbarBrand, Button } from "reactstrap";
+import { Navbar, NavbarToggler, NavbarBrand, Button, Row } from "reactstrap";
 import { getAllNotes } from "../../modules/noteManager";
 import Note from "./NoteCard";
 
@@ -21,14 +21,18 @@ const NoteList = () => {
 
     return (
         <div className="container">
-            <Navbar color="light" light expand="md">
-                <NavbarBrand tag={RRNavLink} to="/notes">Notes</NavbarBrand>
-                <NavbarToggler onClick={toggle} />
-            </Navbar>
-            <Button onClick={() => history.push("/notes/add")}>New Note</Button>
-            {notes.map((note) => (
-                <Note note={note} key={note.id} getNotes={getNotes} />
-            ))}
+            <Row>
+                <Navbar color="light" light expand="md">
+                    <NavbarBrand tag={RRNavLink} to="/notes">Notes</NavbarBrand>
+                    <NavbarToggler onClick={toggle} />
+                </Navbar>
+            </Row>
+            <Row>
+                <Button onClick={() => history.push("/notes/add")}>New Note</Button>
+                {notes.map((note) => (
+                    <Note note={note} key={note.id} getNotes={getNotes} />
+                ))}
+            </Row>
         </div>
     )
 };

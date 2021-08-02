@@ -83,6 +83,16 @@ const AddNewMeal = () => {
                             <option key={cat.id} value={cat.id}>{cat.name}</option>
                         ))} </select>
                 </FormGroup>
+                <FormGroup>
+                    <label>Date</label>
+                    <input type="date"
+                        id="mealDate"
+                        onChange={handleInputChange}
+                        required
+                        autoComplete="off"
+                        className="form-control"
+                        value={meal.mealDate} />
+                </FormGroup>
             </Form>
             <Button className="article-btn"
                 onClick={handleSave}>Save</Button>

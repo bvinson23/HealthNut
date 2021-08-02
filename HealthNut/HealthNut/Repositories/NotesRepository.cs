@@ -25,6 +25,7 @@ namespace HealthNut.Repositories
                                u.Name, u.Email
                         FROM Notes n
                         JOIN Users u ON u.Id = n.UserId
+                        ORDER BY n.Id DESC
                     ";
 
                     var reader = cmd.ExecuteReader();

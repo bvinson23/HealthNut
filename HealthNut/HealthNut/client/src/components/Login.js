@@ -18,7 +18,6 @@ export default function Login() {
 
   return (
     <div>
-      <h1>HealthNut</h1>
       <div className="p-5 my-5 mx-5 rounded">
         <Toast>
           <ToastHeader>

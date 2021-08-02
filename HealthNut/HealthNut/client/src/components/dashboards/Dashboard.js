@@ -3,7 +3,7 @@ import GoalList from "../goals/GoalList";
 import NoteList from "../notes/NoteList";
 import MealList from "../meals/MealList";
 import BigButtons from "../bigButtons/BigButtonsCard";
-import { Col, Container, Row } from "reactstrap";
+import { Col, Container, Row, Toast, ToastBody } from "reactstrap";
 
 const Dashboard = () => {
     return (
@@ -11,11 +11,19 @@ const Dashboard = () => {
             <Container>
                 <Row>
                     <Col sm="3">
-                        <GoalList />
-                        <NoteList />
+                        <Row>
+                            <GoalList />
+                        </Row>
+                        <Row>
+                            <NoteList />
+                        </Row>
                     </Col>
                     <Col>
-                        <BigButtons />
+                        <Toast>
+                            <ToastBody>
+                                <BigButtons />
+                            </ToastBody>
+                        </Toast>
                     </Col>
                     <Col sm="5">
                         <MealList />
