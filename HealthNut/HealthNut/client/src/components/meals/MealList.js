@@ -3,7 +3,11 @@ import { NavLink as RRNavLink } from "react-router-dom";
 import {
     Navbar,
     NavbarToggler,
-    NavbarBrand
+    NavbarBrand,
+    Container,
+    ToastHeader,
+    Toast,
+    ToastBody
 } from "reactstrap";
 import { getAllMeals } from "../../modules/mealManager";
 import Meal from "./MealCard";
@@ -23,15 +27,17 @@ const MealList = () => {
     }, []);
 
     return (
-        <div className="container">
-            <Navbar color="light" light expand="md">
+        <Toast>
+            <ToastHeader color="light" light expand="md">
                 <NavbarBrand tag={RRNavLink} to="/meals">Recent Meals</NavbarBrand>
                 <NavbarToggler onClick={toggle} />
-            </Navbar>
-            {meals.map((meal) => (
-                <Meal meal={meal} key={meal.id} getMeals={getMeals} />
-            ))}
-        </div>
+            </ToastHeader>
+            <ToastBody>
+                {meals.map((meal) => (
+                    <Meal meal={meal} key={meal.id} getMeals={getMeals} />
+                ))}
+            </ToastBody>
+        </Toast>
     )
 };
 

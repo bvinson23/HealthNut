@@ -24,9 +24,8 @@ export default function Register() {
   };
 
   return (
-    <div>
-      <h1>HealthNut</h1>
-      <Toast>
+    <div className="p-5 my-5 mx-5 rounded">
+      <Toast style={{ backgroundColor: "#61B521" }}>
         <ToastHeader>
           Register
         </ToastHeader>
@@ -54,7 +53,7 @@ export default function Register() {
                 <Input id="confirmPassword" type="password" onChange={e => setConfirmPassword(e.target.value)} />
               </FormGroup>
               <FormGroup>
-                <Button>Register</Button>
+                <Button style={{ backgroundColor: "#4472CA" }}>Register</Button>
               </FormGroup>
             </fieldset>
           </Form>

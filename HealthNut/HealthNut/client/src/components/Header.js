@@ -19,7 +19,7 @@ const Header = ({ isLoggedIn }) => {
   return (
     <>
     <div>
-      <Navbar color="dark" dark expand="md">
+      <Navbar style={{backgroundColor: "#0A369D"}} dark expand="md">
         <NavbarBrand tag={RRNavLink} to="/dashboard">HealthNut</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>

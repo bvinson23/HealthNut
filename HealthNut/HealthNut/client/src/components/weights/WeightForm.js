@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { addWeight } from "../../modules/weightManager";
-import { Form, FormGroup, Button, Container } from "reactstrap";
+import { Form, FormGroup, Button, Container, Toast } from "reactstrap";
 
 const AddNewWeight = () => {
     const [weight, setWeight] = useState({
@@ -29,10 +29,10 @@ const AddNewWeight = () => {
     };
 
     return (
-        <Container className="justified-content-center">
+        <Toast className="justified-content-center">
             <Form>
                 <FormGroup>
-                    <label>Current Weight</label>
+                    <h5>Current Weight</h5>
                     <input type="text"
                         id="currentWeight"
                         onChange={handleInputChange}
@@ -44,11 +44,13 @@ const AddNewWeight = () => {
                 </FormGroup>
             </Form>
             <Button className="article-btn"
+                style={{backgroundColor:"#4472CA"}}
                 onClick={handleSave}>Save</Button>
             <Button className="article-btn"
+                style={{backgroundColor:"#4472CA"}}
                 variant="warning"
                 onClick={handleCancelSave}>Cancel</Button>
-        </Container>
+        </Toast>
     )
 };
 

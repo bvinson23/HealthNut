@@ -19,7 +19,7 @@ export default function Login() {
   return (
     <div>
       <div className="p-5 my-5 mx-5 rounded">
-        <Toast>
+        <Toast style={{backgroundColor: "#61B521"}}>
           <ToastHeader>
             Login
           </ToastHeader>
@@ -35,7 +35,7 @@ export default function Login() {
                   <Input id="password" type="password" onChange={e => setPassword(e.target.value)} />
                 </FormGroup>
                 <FormGroup>
-                  <Button>Login</Button>
+                  <Button style={{backgroundColor: "#4472CA"}}>Login</Button>
                 </FormGroup>
                 <em>
                   Not registered? <Link to="register">Register</Link>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardBody, Button, Row } from "reactstrap";
+import { Card, CardBody, Button, Row, Toast, ToastBody, Container } from "reactstrap";
 import { useHistory } from "react-router-dom";
 import { deleteMeal } from "../../modules/mealManager";
 
@@ -19,18 +19,18 @@ const Meal = ({ meal, getMeals }) => {
     };
 
     return (
-        <Card>
-            <CardBody>
-                <div className="container">
+        <Toast style={{backgroundColor: "#61B521"}}>
+            <ToastBody>
+                <Container>
                     <Row>Meal: {meal.mealCategory.name}</Row>
                     <Row>Calories: {meal.calories}</Row>
                     <Row>Description: {meal.name}</Row>
                     <Row>Date: {handleDate()}</Row>
-                    <Button onClick={() => history.push(`/meals/edit/${meal.id}`)} style={{width: "5em", marginLeft: ".5rem"}}>Edit</Button>
-                    <Button onClick={deleteSelectedMeal} style={{width: "5em", marginLeft: ".5rem"}}>Delete</Button>
-                </div>
-            </CardBody>
-        </Card>
+                    <Button onClick={() => history.push(`/meals/edit/${meal.id}`)} style={{width: "5em", marginLeft: ".5rem", backgroundColor: "#4472CA"}}>Edit</Button>
+                    <Button onClick={deleteSelectedMeal} style={{width: "5em", marginLeft: ".5rem", backgroundColor: "#4472CA"}}>Delete</Button>
+                </Container>
+            </ToastBody>
+        </Toast>
     )
 };
 

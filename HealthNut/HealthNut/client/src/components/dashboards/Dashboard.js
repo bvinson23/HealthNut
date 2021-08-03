@@ -10,7 +10,7 @@ const Dashboard = () => {
         <>
             <Container>
                 <Row>
-                    <Col sm="3">
+                    <Col sm="4">
                         <Row>
                             <GoalList />
                         </Row>
@@ -18,14 +18,14 @@ const Dashboard = () => {
                             <NoteList />
                         </Row>
                     </Col>
-                    <Col>
+                    <Col sm="4">
                         <Toast>
                             <ToastBody>
                                 <BigButtons />
                             </ToastBody>
                         </Toast>
                     </Col>
-                    <Col sm="5">
+                    <Col sm="4">
                         <MealList />
                     </Col>
                 </Row>

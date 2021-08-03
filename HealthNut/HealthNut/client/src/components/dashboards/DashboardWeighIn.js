@@ -13,7 +13,7 @@ const DashboardWeighIn = () => {
                     <Col sm="3">
                         <WorkoutList />
                     </Col>
-                    <Col>
+                    <Col sm="4">
                         <AddNewWeight />
                         <NoteList />
                     </Col>

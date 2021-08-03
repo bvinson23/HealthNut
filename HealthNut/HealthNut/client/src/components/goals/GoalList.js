@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink as RRNavLink } from "react-router-dom";
-import { Navbar, NavbarToggler, NavbarBrand } from "reactstrap";
+import { Navbar, NavbarToggler, NavbarBrand, Toast, ToastHeader, ToastBody } from "reactstrap";
 import { getCurrentUser } from "../../modules/authManager";
 import { getRecentWeight } from "../../modules/weightManager";
 import Goal from "./GoalCard";
@@ -29,13 +29,15 @@ const GoalList = () => {
     }, []);
 
     return (
-        <div className="text-justify">
-            <Navbar color="light" light expand="md">
-                <NavbarBrand tag={RRNavLink} to="/goals">Goals</NavbarBrand>
+        <Toast>
+            <ToastHeader color="light" light expand="md">
+                <NavbarBrand>Goals</NavbarBrand>
                 <NavbarToggler onClick={toggle} />
-            </Navbar>
-            <Goal user={user} key={user.id} weight={weight} />
-        </div>
+            </ToastHeader>
+            <ToastBody>
+                <Goal user={user} key={user.id} weight={weight} />
+            </ToastBody>
+        </Toast>
     )
 };
 

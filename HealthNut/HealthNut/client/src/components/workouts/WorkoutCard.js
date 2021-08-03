@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardBody, Button, Row } from "reactstrap";
+import { Card, CardBody, Button, Row, Toast, ToastBody } from "reactstrap";
 import { useHistory } from "react-router-dom";
 import { deleteWorkout } from "../../modules/workoutManager";
 
@@ -19,18 +19,18 @@ const Workout = ({ workout, getWorkouts }) => {
     };
 
     return (
-        <Card>
-            <CardBody>
+        <Toast style={{backgroundColor: "#61B521"}}>
+            <ToastBody>
                 <div className="WorkoutList">
                     <Row>Date: {handleDate()}</Row>
                     <Row>Workout: {workout.name}</Row>
                     <Row>Calories Burned: {workout.caloriesBurned}</Row>
                     <Row>Duration: {workout.duration}</Row>
-                    <Button onClick={() => history.push(`/workouts/edit/${workout.id}`)} style={{width: "5em", marginLeft: ".5rem"}}>Edit</Button>
-                    <Button onClick={deleteSelectedWorkout} style={{width: "5em", marginLeft: ".5rem"}}>Delete</Button>
+                    <Button onClick={() => history.push(`/workouts/edit/${workout.id}`)} style={{width: "5em", marginLeft: ".5rem", backgroundColor: "#4472CA"}}>Edit</Button>
+                    <Button onClick={deleteSelectedWorkout} style={{width: "5em", marginLeft: ".5rem", backgroundColor: "#4472CA"}}>Delete</Button>
                 </div>
-            </CardBody>
-        </Card>
+            </ToastBody>
+        </Toast>
     )
 };
 

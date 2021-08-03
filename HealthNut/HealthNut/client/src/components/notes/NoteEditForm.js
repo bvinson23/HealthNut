@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { editNote, getNoteById } from "../../modules/noteManager";
-import { Form, FormGroup, Button, Container, Col, Input } from "reactstrap";
+import { Form, FormGroup, Button, Container, Col, Input, Toast } from "reactstrap";
 
 const EditExistingNote = () => {
     const [note, setNote] = useState({});
@@ -32,9 +32,9 @@ const EditExistingNote = () => {
     }, [id]);
 
     return (
-        <Container className="justified-content-center">
+        <Toast>
             <Form>
-            <Col>
+                <Col>
                     <h3>Edit A Note</h3>
                 </Col>
                 <FormGroup>
@@ -49,11 +49,13 @@ const EditExistingNote = () => {
                 </FormGroup>
             </Form>
             <Button className="article-btn"
+                style={{ backgroundColor: "#4472CA" }}
                 onClick={handleSave}>Save</Button>
             <Button className="article-btn"
+                style={{ backgroundColor: "#4472CA" }}
                 variant="warning"
                 onClick={handleCancel}>Cancel</Button>
-        </Container>
+        </Toast>
     )
 };
 
