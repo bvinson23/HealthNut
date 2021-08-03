@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { editWorkout, getWorkoutById } from "../../modules/workoutManager";
-import { Form, FormGroup, Button, Container } from "reactstrap";
+import { Form, FormGroup, Button, Container, Toast, ToastBody } from "reactstrap";
 
 const EditExistingWorkout = () => {
     const [workout, setWorkout] = useState({});
@@ -10,7 +10,7 @@ const EditExistingWorkout = () => {
     const history = useHistory();
 
     const handleInputChange = (evt) => {
-        const editedWorkout = { ...workout}
+        const editedWorkout = { ...workout }
         let selectedValue = evt.target.value
         editedWorkout[evt.target.id] = selectedValue
         setWorkout(editedWorkout)
@@ -32,45 +32,49 @@ const EditExistingWorkout = () => {
     }, [id]);
 
     return (
-        <Container className="justified-content-center">
-            <Form>
-                <FormGroup>
-                    <label>Workout</label>
-                    <input type="text"
-                        id="name"
-                        onChange={handleInputChange}
-                        required
-                        autoComplete="off"
-                        className="form-control"
-                        defaultValue={workout.name} />
-                </FormGroup>
-                <FormGroup>
-                    <label>Calories Burned</label>
-                    <input type="text"
-                        id="caloriesBurned"
-                        onChange={handleInputChange}
-                        required
-                        autoComplete="off"
-                        className="form-control"
-                        defaultValue={workout.caloriesBurned} />
-                </FormGroup>
-                <FormGroup>
-                    <label>Duration</label>
-                    <input type="text"
-                        id="duration"
-                        onChange={handleInputChange}
-                        required
-                        autoComplete="off"
-                        className="form-control"
-                        defaultValue={workout.duration} />
-                </FormGroup>
-            </Form>
-            <Button className="article-btn"
-                onClick={handleSave}>Save</Button>
-            <Button className="article-btn"
-                variant="warning"
-                onClick={handleCancel}>Cancel</Button>
-        </Container>
+        <Toast>
+            <ToastBody>
+                <Form>
+                    <FormGroup>
+                        <label>Workout</label>
+                        <input type="text"
+                            id="name"
+                            onChange={handleInputChange}
+                            required
+                            autoComplete="off"
+                            className="form-control"
+                            defaultValue={workout.name} />
+                    </FormGroup>
+                    <FormGroup>
+                        <label>Calories Burned</label>
+                        <input type="text"
+                            id="caloriesBurned"
+                            onChange={handleInputChange}
+                            required
+                            autoComplete="off"
+                            className="form-control"
+                            defaultValue={workout.caloriesBurned} />
+                    </FormGroup>
+                    <FormGroup>
+                        <label>Duration</label>
+                        <input type="text"
+                            id="duration"
+                            onChange={handleInputChange}
+                            required
+                            autoComplete="off"
+                            className="form-control"
+                            defaultValue={workout.duration} />
+                    </FormGroup>
+                </Form>
+                <Button className="article-btn"
+                    style={{backgroundColor: "#4472CA"}}
+                    onClick={handleSave}>Save</Button>
+                <Button className="article-btn"
+                    style={{backgroundColor: "#4472CA"}}
+                    variant="warning"
+                    onClick={handleCancel}>Cancel</Button>
+            </ToastBody>
+        </Toast>
     )
 };
 

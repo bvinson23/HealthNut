@@ -11,14 +11,14 @@ const DashboardNoteEdit = () => {
             <Container>
                 <Row>
                     <Col sm="3">
-                        {GoalList()}
-                        {WorkoutList()}
+                        <GoalList />
+                        <WorkoutList />
                     </Col>
                     <Col>
-                        {EditExistingNote()}
+                        <EditExistingNote />
                     </Col>
                     <Col sm="5">
-                        {MealList()}
+                        <MealList />
                     </Col>
                 </Row>
             </Container>

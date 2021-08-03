@@ -1,5 +1,6 @@
 ﻿using HealthNut.Models;
 using HealthNut.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace HealthNut.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class NotesController : ControllerBase
@@ -25,16 +27,8 @@ namespace HealthNut.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var user = GetCurrentFirebaseUserId();
-            if (user == null)
-            {
-                return Unauthorized();
-            }
-            else
-            {
-                var notes = _notesRepository.GetAllUserNotes(user);
-                return Ok(notes);
-            }
+            var notes = _notesRepository.GetAllUserNotes();
+            return Ok(notes);
         }
 
         [HttpGet("{id}")]

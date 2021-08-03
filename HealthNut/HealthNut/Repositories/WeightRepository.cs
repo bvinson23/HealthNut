@@ -13,8 +13,9 @@ namespace HealthNut.Repositories
     {
         public WeightRepository(IConfiguration configuration) : base(configuration) { }
 
-        public List<Weight> GetAllUserWeights(string firebaseUserId)
+        public List<Weight> GetAllUserWeights()
         {
+            //string firebaseUserId
             using (var conn = Connection)
             {
                 conn.Open();
@@ -25,10 +26,10 @@ namespace HealthNut.Repositories
                                u.Name, u.Email
                         FROM Weight w
                         JOIN Users u ON u.Id = w.UserId
-                        WHERE u.FirebaseUserId = @FirebaseUserId
                     ";
+                        //WHERE u.FirebaseUserId = @FirebaseUserId
 
-                    DbUtils.AddParameter(cmd, "@FirebaseUserId", firebaseUserId);
+                    //DbUtils.AddParameter(cmd, "@FirebaseUserId", firebaseUserId);
                     var reader = cmd.ExecuteReader();
                     var weights = new List<Weight>();
                     while (reader.Read())
@@ -78,7 +79,7 @@ namespace HealthNut.Repositories
             }
         }
 
-        public Weight GetMostRecentWeight(string firebaseUserId)
+        public Weight GetMostRecentWeight()
         {
             using (var conn = Connection)
             {
@@ -90,11 +91,9 @@ namespace HealthNut.Repositories
                                u.Name, u.Email
                         FROM Weight w
                         JOIN Users u ON u.Id = w.UserId
-                        WHERE u.FirebaseUserId = @FirebaseUserId
                         ORDER BY w.RecordedDate DESC
                     ";
 
-                    DbUtils.AddParameter(cmd, "@FirebaseUserId", firebaseUserId);
                     var reader = cmd.ExecuteReader();
                     Weight weight = null;
                     while (reader.Read())

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { editMeal, getMealById, getMealCategories } from "../../modules/mealManager";
-import { Form, FormGroup, Button, Container } from "reactstrap";
+import { Form, FormGroup, Button, Container, Toast, ToastBody } from "reactstrap";
 
 const EditExistingMeal = () => {
     const [meal, setMeal] = useState({});
@@ -16,7 +16,7 @@ const EditExistingMeal = () => {
     }
 
     const handleInputChange = (evt) => {
-        const editedMeal = { ...meal}
+        const editedMeal = { ...meal }
         let selectedValue = evt.target.value
         editedMeal[evt.target.id] = selectedValue
         setMeal(editedMeal)
@@ -42,50 +42,64 @@ const EditExistingMeal = () => {
     }, []);
 
     return (
-        <Container className="justified-content-center">
-            <Form>
-                <FormGroup>
-                    <label>Description</label>
-                    <input type="text"
-                        id="name"
-                        onChange={handleInputChange}
-                        required
-                        autoComplete="off"
-                        className="form-control"
-                        defaultValue={meal.name} />
-                </FormGroup>
-                <FormGroup>
-                    <label>Calories</label>
-                    <input type="text"
-                        id="calories"
-                        onChange={handleInputChange}
-                        required
-                        autoComplete="off"
-                        className="form-control"
-                        defaultValue={meal.calories} />
-                </FormGroup>
-                <FormGroup>
-                <label>Meal</label>
-                    <select type="select"
-                        id="mealCategoryId"
-                        onChange={handleInputChange}
-                        required
-                        autoComplete="off"
-                        className="form-control"
-                        placeholder="Choose your meal"
-                        value={meal.mealCategoryId}>
-                        <option value="0">Select a meal</option>
-                        {categories.map(cat => (
-                            <option key={cat.id} value={cat.id}>{cat.name}</option>
-                        ))} </select>
-                </FormGroup>
-            </Form>
-            <Button className="article-btn"
-                onClick={handleSave}>Save</Button>
-            <Button className="article-btn"
-                variant="warning"
-                onClick={handleCancel}>Cancel</Button>
-        </Container>
+        <Toast>
+            <ToastBody>
+                <Form>
+                    <FormGroup>
+                        <label>Description</label>
+                        <input type="text"
+                            id="name"
+                            onChange={handleInputChange}
+                            required
+                            autoComplete="off"
+                            className="form-control"
+                            defaultValue={meal.name} />
+                    </FormGroup>
+                    <FormGroup>
+                        <label>Calories</label>
+                        <input type="text"
+                            id="calories"
+                            onChange={handleInputChange}
+                            required
+                            autoComplete="off"
+                            className="form-control"
+                            defaultValue={meal.calories} />
+                    </FormGroup>
+                    <FormGroup>
+                        <label>Meal</label>
+                        <select type="select"
+                            id="mealCategoryId"
+                            onChange={handleInputChange}
+                            required
+                            autoComplete="off"
+                            className="form-control"
+                            placeholder="Choose your meal"
+                            value={meal.mealCategoryId}>
+                            <option value="0">Select a meal</option>
+                            {categories.map(cat => (
+                                <option key={cat.id} value={cat.id}>{cat.name}</option>
+                            ))} </select>
+                    </FormGroup>
+                    <FormGroup>
+                        <label>Date</label>
+                        <input type="date"
+                            id="mealDate"
+                            onChange={handleInputChange}
+                            required
+                            autoComplete="off"
+                            className="form-control"
+                            defaultValue={meal.mealDate} />
+                    </FormGroup>
+                </Form>
+                <Button className="article-btn"
+                    style={{ backgroundColor: "#4472CA" }}
+                    onClick={handleSave}>Save</Button>
+                <Button className="article-btn"
+                    style={{ backgroundColor: "#4472CA" }}
+                    variant="warning"
+                    onClick={handleCancel}>Cancel</Button>
+            </ToastBody>
+        </Toast>
     )
 };
 

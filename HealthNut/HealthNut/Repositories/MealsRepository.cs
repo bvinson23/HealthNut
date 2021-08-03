@@ -13,7 +13,7 @@ namespace HealthNut.Repositories
     {
         public MealsRepository(IConfiguration configuration) : base(configuration) { }
 
-        public List<Meals> GetAllUserMeals(string firebaseUserId)
+        public List<Meals> GetAllUserMeals()
         {
             using (var conn = Connection)
             {
@@ -21,16 +21,15 @@ namespace HealthNut.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT m.Id, m.UserId, m.[Name], m.Calories, m.MealCategoryId,
+                        SELECT TOP 4 m.Id, m.UserId, m.[Name], m.Calories, m.MealCategoryId, m.mealDate,
                                mc.Name AS CategoryName,
                                u.Name AS UserName, u.Email
                         FROM Meals m
                         JOIN MealCategories mc on mc.Id = m.MealCategoryId
                         JOIN Users u ON u.Id = m.UserId
-                        WHERE u.FirebaseUserId = @FirebaseUserId
+                        ORDER BY m.mealDate DESC
                     ";
 
-                    DbUtils.AddParameter(cmd, "@FirebaseUserId", firebaseUserId);
                     var reader = cmd.ExecuteReader();
                     var meals = new List<Meals>();
                     while (reader.Read())
@@ -53,7 +52,7 @@ namespace HealthNut.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT m.Id, m.UserId, m.[Name], m.Calories, m.MealCategoryId,
+                        SELECT m.Id, m.UserId, m.[Name], m.Calories, m.MealCategoryId, m.MealDate,
                                mc.Name AS CategoryName,
                                u.Name AS UserName, u.Email
                         FROM Meals m
@@ -90,15 +89,16 @@ namespace HealthNut.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        INSERT INTO Meals (UserId, Name, Calories, MealCategoryId)
+                        INSERT INTO Meals (UserId, Name, Calories, MealCategoryId, MealDate)
                         OUTPUT INSERTED.ID
-                        VALUES (@UserId, @Name, @Calories, @MealCategoryId)
+                        VALUES (@UserId, @Name, @Calories, @MealCategoryId, @MealDate)
                     ";
 
                     DbUtils.AddParameter(cmd, "@UserId", meal.UserId);
                     DbUtils.AddParameter(cmd, "@Name", meal.Name);
                     DbUtils.AddParameter(cmd, "@Calories", meal.Calories);
                     DbUtils.AddParameter(cmd, "@MealCategoryId", meal.MealCategoryId);
+                    DbUtils.AddParameter(cmd, "@MealDate", meal.MealDate);
                     meal.Id = (int)cmd.ExecuteScalar();
                 }
             }
@@ -116,7 +116,8 @@ namespace HealthNut.Repositories
                             SET UserId = @UserId,
                                 Name = @Name,
                                 Calories = @Calories,
-                                MealCategoryId = @MealCategoryId
+                                MealCategoryId = @MealCategoryId,
+                                MealDate = @MealDate
                         WHERE Id = @Id
                     ";
 
@@ -124,6 +125,7 @@ namespace HealthNut.Repositories
                     DbUtils.AddParameter(cmd, "@Name", meal.Name);
                     DbUtils.AddParameter(cmd, "@Calories", meal.Calories);
                     DbUtils.AddParameter(cmd, "@MealCategoryId", meal.MealCategoryId);
+                    DbUtils.AddParameter(cmd, "@MealDate", meal.MealDate);
                     DbUtils.AddParameter(cmd, "@Id", meal.Id);
 
                     cmd.ExecuteNonQuery();
@@ -154,6 +156,7 @@ namespace HealthNut.Repositories
                 Name = DbUtils.GetString(reader, "Name"),
                 Calories = DbUtils.GetInt(reader, "Calories"),
                 MealCategoryId = DbUtils.GetInt(reader, "MealCategoryId"),
+                MealDate = DbUtils.GetDateTime(reader, "MealDate"),
                 MealCategory = new MealCategories()
                 {
                     Id = DbUtils.GetInt(reader, "MealCategoryId"),

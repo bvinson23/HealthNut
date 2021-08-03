@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { getCurrentUser, updateCurrentUser } from "../../modules/authManager";
-import { Form, FormGroup, Button, Container } from "reactstrap";
+import { Form, FormGroup, Button, Container, Toast, ToastBody } from "reactstrap";
 
 const UpdateGoal = () => {
     const [user, setUser] = useState({});
@@ -35,25 +35,29 @@ const UpdateGoal = () => {
     }, []);
 
     return (
-        <Container className="justified-content-center">
-            <Form>
-                <FormGroup>
-                    <label>Weight Goal</label>
-                    <input type="text"
-                        id="goalWeight"
-                        onChange={handleInputChange}
-                        required
-                        autoComplete="off"
-                        className="form-control"
-                        defaultValue={user.goalWeight} />
-                </FormGroup>
-            </Form>
-            <Button className="article-btn"
-                onClick={handleSave}>Save</Button>
-            <Button className="article-btn"
-                variant="warning"
-                onClick={handleCancelSave}>Cancel</Button>
-        </Container>
+        <Toast className="mt-5" style={{backgroundColor: "#61B521"}}>
+            <ToastBody>
+                <Form>
+                    <FormGroup>
+                        <label>Weight Goal</label>
+                        <input type="text"
+                            id="goalWeight"
+                            onChange={handleInputChange}
+                            required
+                            autoComplete="off"
+                            className="form-control"
+                            defaultValue={user.goalWeight} />
+                    </FormGroup>
+                </Form>
+                <Button className="article-btn"
+                    style={{backgroundColor: "#4472CA"}}
+                    onClick={handleSave}>Save</Button>
+                <Button className="article-btn"
+                    style={{backgroundColor: "#4472CA"}}
+                    variant="warning"
+                    onClick={handleCancelSave}>Cancel</Button>
+            </ToastBody>
+        </Toast>
     )
 };
 

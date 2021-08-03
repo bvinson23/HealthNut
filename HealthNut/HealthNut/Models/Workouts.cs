@@ -11,6 +11,7 @@ namespace HealthNut.Models
         public int UserId { get; set; }
         public string Name { get; set; }
         public int CaloriesBurned { get; set; }
-        public int Duration { get; set; }
+        public string Duration { get; set; }
+        public DateTime Date { get; set; }
     }
 }

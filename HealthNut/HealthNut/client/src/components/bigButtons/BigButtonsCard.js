@@ -15,6 +15,7 @@ const BigButtons = () => {
                     </Col>
                     <Col>
                         <Button
+                            style={{backgroundColor:"#4472CA"}}
                             onClick={() => history.push("/meals/add")}
                             size="lg">
                             Add A Meal
@@ -23,6 +24,7 @@ const BigButtons = () => {
                     <br></br>
                     <Col>
                         <Button
+                            style={{backgroundColor:"#4472CA"}}
                             onClick={() => history.push("/workouts/add")}
                             size="lg">
                             Add A Workout

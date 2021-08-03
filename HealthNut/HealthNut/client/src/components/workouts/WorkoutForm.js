@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { addWorkout } from "../../modules/workoutManager";
-import { Form, FormGroup, Button, Container } from "reactstrap";
+import { Form, FormGroup, Button, Container, Toast, ToastBody } from "reactstrap";
 
 const AddNewWorkout = () => {
     const [workout, setWorkout] = useState({
         name: "",
-        caloriesBurned: 0,
-        duration: 0
+        caloriesBurned: "",
+        duration: ""
     });
 
     const history = useHistory();
@@ -35,48 +35,62 @@ const AddNewWorkout = () => {
     };
 
     return (
-        <Container className="justified-content-center">
-            <Form>
-                <FormGroup>
-                    <label>Workout</label>
-                    <input type="text"
-                        id="name"
-                        onChange={handleInputChange}
-                        required
-                        autoComplete="off"
-                        className="form-control"
-                        placeholder="Describe your workout..."
-                        value={workout.name} />
-                </FormGroup>
-                <FormGroup>
-                    <label>Calories Burned</label>
-                    <input type="text"
-                        id="caloriesBurned"
-                        onChange={handleInputChange}
-                        required
-                        autoComplete="off"
-                        className="form-control"
-                        placeholder="Calories Burned..."
-                        value={workout.caloriesBurned} />
-                </FormGroup>
-                <FormGroup>
-                    <label>Duration</label>
-                    <input type="text"
-                        id="duration"
-                        onChange={handleInputChange}
-                        required
-                        autoComplete="off"
-                        className="form-control"
-                        placeholder="Duration..."
-                        value={workout.duration} />
-                </FormGroup>
-            </Form>
-            <Button className="article-btn"
-                onClick={handleSave}>Save</Button>
-            <Button className="article-btn"
-                variant="warning"
-                onClick={handleCancelSave}>Cancel</Button>
-        </Container>
+        <Toast>
+            <ToastBody>
+                <Form>
+                    <FormGroup>
+                        <label>Workout</label>
+                        <input type="text"
+                            id="name"
+                            onChange={handleInputChange}
+                            required
+                            autoComplete="off"
+                            className="form-control"
+                            placeholder="Describe your workout..."
+                            value={workout.name} />
+                    </FormGroup>
+                    <FormGroup>
+                        <label>Calories Burned</label>
+                        <input type="text"
+                            id="caloriesBurned"
+                            onChange={handleInputChange}
+                            required
+                            autoComplete="off"
+                            className="form-control"
+                            placeholder="Calories Burned..."
+                            value={workout.caloriesBurned} />
+                    </FormGroup>
+                    <FormGroup>
+                        <label>Duration</label>
+                        <input type="text"
+                            id="duration"
+                            onChange={handleInputChange}
+                            required
+                            autoComplete="off"
+                            className="form-control"
+                            placeholder="Duration..."
+                            value={workout.duration} />
+                    </FormGroup>
+                    <FormGroup>
+                        <label>Date</label>
+                        <input type="date"
+                            id="date"
+                            onChange={handleInputChange}
+                            required
+                            autoComplete="off"
+                            className="form-control"
+                            value={workout.date} />
+                    </FormGroup>
+                </Form>
+                <Button className="article-btn"
+                    style={{ backgroundColor: "#4472CA" }}
+                    onClick={handleSave}>Save</Button>
+                <Button className="article-btn"
+                    style={{ backgroundColor: "#4472CA" }}
+                    variant="warning"
+                    onClick={handleCancelSave}>Cancel</Button>
+            </ToastBody>
+        </Toast>
     )
 };
 

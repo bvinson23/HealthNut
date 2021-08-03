@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardBody, Button } from "reactstrap";
+import { Card, CardBody, Button, Row, Toast, ToastBody } from "reactstrap";
 import { useHistory } from "react-router-dom";
 import { deleteNote } from "../../modules/noteManager";
 
@@ -20,16 +20,16 @@ const Note = ({ note, getNotes }) => {
     };
 
     return (
-        <Card>
-            <CardBody>
+        <Toast style={{backgroundColor: "#61B521"}}>
+            <ToastBody>
                 <div className="NoteList">
-                    <label style={{width: "10em" }}>Date: {handleDate()}</label>
-                    <label style={{width: "10em" }}>{note.content}</label>
-                    <Button onClick={() => history.push(`/notes/edit/${note.id}`)} style={{width: "5em", marginLeft: ".5rem"}}>Edit</Button>
-                    <Button onClick={deleteSelectedNote} style={{width: "5em", marginLeft: ".5rem"}}>Delete</Button>
+                    <Row>Date: {handleDate()}</Row>
+                    <Row>{note.content}</Row>
+                    <Button onClick={() => history.push(`/notes/edit/${note.id}`)} style={{width: "5em", marginLeft: ".5rem", backgroundColor: "#4472CA"}}>Edit</Button>
+                    <Button onClick={deleteSelectedNote} style={{width: "5em", marginLeft: ".5rem", backgroundColor: "#4472CA"}}>Delete</Button>
                 </div>
-            </CardBody>
-        </Card>
+            </ToastBody>
+        </Toast>
     )
 };
 

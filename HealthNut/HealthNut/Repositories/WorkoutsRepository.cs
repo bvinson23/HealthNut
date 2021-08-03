@@ -13,7 +13,7 @@ namespace HealthNut.Repositories
     {
         public WorkoutsRepository(IConfiguration configuration) : base(configuration) { }
 
-        public List<Workouts> GetAllUserWorkouts(string firebaseUserId)
+        public List<Workouts> GetAllUserWorkouts()
         {
             using (var conn = Connection)
             {
@@ -21,14 +21,13 @@ namespace HealthNut.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT w.Id, w.UserId, w.[Name], w.CaloriesBurned, w.Duration,
+                        SELECT w.Id, w.UserId, w.[Name], w.CaloriesBurned, w.Duration, w.Date,
                                u.Name AS UserName, u.Email
                         FROM Workouts w
                         JOIN Users u ON u.Id = w.UserId
-                        WHERE u.FirebaseUserId = @FirebaseUserId
+                        ORDER BY w.Date DESC
                     ";
 
-                    DbUtils.AddParameter(cmd, "@FirebaseUserId", firebaseUserId);
                     var reader = cmd.ExecuteReader();
                     var workouts = new List<Workouts>();
                     while (reader.Read())
@@ -51,7 +50,7 @@ namespace HealthNut.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT w.Id, w.UserId, w.[Name], w.CaloriesBurned, w.Duration,
+                        SELECT w.Id, w.UserId, w.[Name], w.CaloriesBurned, w.Duration, w.Date,
                                u.Name AS UserName, u.Email
                         FROM Workouts w
                         JOIN Users u ON u.Id = w.UserId
@@ -86,15 +85,16 @@ namespace HealthNut.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        INSERT INTO Workouts (UserId, Name, CaloriesBurned, Duration)
+                        INSERT INTO Workouts (UserId, Name, CaloriesBurned, Duration, Date)
                         OUTPUT INSERTED.ID
-                        VALUES (@UserId, @Name, @CaloriesBurned, @Duration)
+                        VALUES (@UserId, @Name, @CaloriesBurned, @Duration, @Date)
                     ";
 
                     DbUtils.AddParameter(cmd, "@UserId", workout.UserId);
                     DbUtils.AddParameter(cmd, "@Name", workout.Name);
                     DbUtils.AddParameter(cmd, "@CaloriesBurned", workout.CaloriesBurned);
                     DbUtils.AddParameter(cmd, "@Duration", workout.Duration);
+                    DbUtils.AddParameter(cmd, "@Date", workout.Date);
                     workout.Id = (int)cmd.ExecuteScalar();
                 }
             }
@@ -112,7 +112,8 @@ namespace HealthNut.Repositories
                             SET UserId = @UserId,
                                 Name = @Name,
                                 CaloriesBurned = @CaloriesBurned,
-                                Duration = @Duration
+                                Duration = @Duration,
+                                Date = @Date
                         WHERE Id = @Id
                     ";
 
@@ -120,6 +121,7 @@ namespace HealthNut.Repositories
                     DbUtils.AddParameter(cmd, "@Name", workout.Name);
                     DbUtils.AddParameter(cmd, "@CaloriesBurned", workout.CaloriesBurned);
                     DbUtils.AddParameter(cmd, "@Duration", workout.Duration);
+                    DbUtils.AddParameter(cmd, "@Date", workout.Date);
                     DbUtils.AddParameter(cmd, "@Id", workout.Id);
 
                     cmd.ExecuteNonQuery();
@@ -149,7 +151,8 @@ namespace HealthNut.Repositories
                 UserId = DbUtils.GetInt(reader, "UserId"),
                 Name = DbUtils.GetString(reader, "Name"),
                 CaloriesBurned = DbUtils.GetInt(reader, "CaloriesBurned"),
-                Duration = DbUtils.GetInt(reader, "Duration")
+                Duration = DbUtils.GetString(reader, "Duration"),
+                Date = DbUtils.GetDateTime(reader, "Date"),
             };
         }
     }

@@ -11,14 +11,14 @@ const DashboardWeighIn = () => {
             <Container>
                 <Row>
                     <Col sm="3">
-                        {WorkoutList()}
+                        <WorkoutList />
                     </Col>
-                    <Col>
-                        {AddNewWeight()}
-                        {NoteList()}
+                    <Col sm="4">
+                        <AddNewWeight />
+                        <NoteList />
                     </Col>
                     <Col sm="5">
-                        {MealList()}
+                        <MealList />
                     </Col>
                 </Row>
             </Container>

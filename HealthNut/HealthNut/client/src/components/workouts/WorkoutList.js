@@ -3,7 +3,10 @@ import { NavLink as RRNavLink } from "react-router-dom";
 import {
     Navbar,
     NavbarToggler,
-    NavbarBrand
+    NavbarBrand,
+    Toast,
+    ToastHeader,
+    ToastBody
 } from "reactstrap";
 import { getAllWorkouts } from "../../modules/workoutManager";
 import Workout from "./WorkoutCard";
@@ -23,15 +26,17 @@ const WorkoutList = () => {
     }, []);
 
     return (
-        <div className="container">
-            <Navbar color="light" light expand="md">
+        <Toast>
+            <ToastHeader color="light" light expand="md">
                 <NavbarBrand tag={RRNavLink} to="/workouts">Recent Workouts</NavbarBrand>
                 <NavbarToggler onClick={toggle} />
-            </Navbar>
-            {workouts.map((workout) => (
-                <Workout workout={workout} key={workout.id} getWorkouts={getWorkouts} />
-            ))}
-        </div>
+            </ToastHeader>
+            <ToastBody>
+                {workouts.map((workout) => (
+                    <Workout workout={workout} key={workout.id} getWorkouts={getWorkouts} />
+                ))}
+            </ToastBody>
+        </Toast>
     )
 };
 

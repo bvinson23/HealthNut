@@ -11,14 +11,14 @@ const DashboardNoteForm = () => {
             <Container>
                 <Row>
                     <Col sm="3">
-                        {GoalList()}
-                        {WorkoutList()}
+                        <GoalList />
+                        <WorkoutList />
                     </Col>
                     <Col>
-                        {AddNewNote()}
+                        <AddNewNote />
                     </Col>
                     <Col sm="5">
-                        {MealList()}
+                        <MealList />
                     </Col>
                 </Row>
             </Container>

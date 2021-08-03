@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardBody, Button } from "reactstrap";
+import { Card, CardBody, Button, Row, Toast, ToastBody, Container } from "reactstrap";
 import { useHistory } from "react-router-dom";
 import { deleteMeal } from "../../modules/mealManager";
 
@@ -13,18 +13,24 @@ const Meal = ({ meal, getMeals }) => {
         }
     }
 
+    const handleDate = () => {
+        let date = new Date(meal.mealDate).toDateString();
+        return date;
+    };
+
     return (
-        <Card>
-            <CardBody>
-                <div className="MealList">
-                    <label style={{ width: "10em" }}>Meal: {meal.mealCategory.name}</label>
-                    <label style={{ width: "10em" }}>Calories: {meal.calories}</label>
-                    <label style={{ width: "10em" }}>Description: {meal.name}</label>
-                    <Button onClick={() => history.push(`/meals/edit/${meal.id}`)} style={{width: "5em", marginLeft: ".5rem"}}>Edit</Button>
-                    <Button onClick={deleteSelectedMeal} style={{width: "5em", marginLeft: ".5rem"}}>Delete</Button>
-                </div>
-            </CardBody>
-        </Card>
+        <Toast style={{backgroundColor: "#61B521"}}>
+            <ToastBody>
+                <Container>
+                    <Row>Meal: {meal.mealCategory.name}</Row>
+                    <Row>Calories: {meal.calories}</Row>
+                    <Row>Description: {meal.name}</Row>
+                    <Row>Date: {handleDate()}</Row>
+                    <Button onClick={() => history.push(`/meals/edit/${meal.id}`)} style={{width: "5em", marginLeft: ".5rem", backgroundColor: "#4472CA"}}>Edit</Button>
+                    <Button onClick={deleteSelectedMeal} style={{width: "5em", marginLeft: ".5rem", backgroundColor: "#4472CA"}}>Delete</Button>
+                </Container>
+            </ToastBody>
+        </Toast>
     )
 };
 
