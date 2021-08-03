@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink as RRNavLink } from "react-router-dom";
 import {
-    Navbar,
     NavbarToggler,
     NavbarBrand,
     Toast,

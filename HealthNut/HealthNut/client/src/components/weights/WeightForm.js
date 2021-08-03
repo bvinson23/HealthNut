@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { addWeight } from "../../modules/weightManager";
-import { Form, FormGroup, Button, Container, Toast } from "reactstrap";
+import { Form, FormGroup, Button, Toast } from "reactstrap";
 
 const AddNewWeight = () => {
     const [weight, setWeight] = useState({

@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardBody, Button, Row, Toast, ToastBody } from "reactstrap";
+import { Button, Row, Toast, ToastBody } from "reactstrap";
 import { useHistory } from "react-router-dom";
 import { deleteNote } from "../../modules/noteManager";
 

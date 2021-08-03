@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardBody, Button, Row, Toast, ToastBody, Container } from "reactstrap";
+import { Button, Row, Toast, ToastBody, Container } from "reactstrap";
 import { useHistory } from "react-router-dom";
 import { deleteMeal } from "../../modules/mealManager";
 

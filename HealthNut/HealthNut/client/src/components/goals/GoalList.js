@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { NavLink as RRNavLink } from "react-router-dom";
-import { Navbar, NavbarToggler, NavbarBrand, Toast, ToastHeader, ToastBody } from "reactstrap";
+import { NavbarToggler, NavbarBrand, Toast, ToastHeader, ToastBody } from "reactstrap";
 import { getCurrentUser } from "../../modules/authManager";
 import { getRecentWeight } from "../../modules/weightManager";
 import Goal from "./GoalCard";

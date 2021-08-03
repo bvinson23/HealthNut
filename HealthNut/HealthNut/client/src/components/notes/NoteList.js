@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink as RRNavLink, useHistory } from "react-router-dom";
-import { Navbar, NavbarToggler, NavbarBrand, Button, Row, Toast, ToastHeader, ToastBody } from "reactstrap";
+import { NavbarToggler, NavbarBrand, Button, Toast, ToastHeader, ToastBody } from "reactstrap";
 import { getAllNotes } from "../../modules/noteManager";
 import Note from "./NoteCard";
 
