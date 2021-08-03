@@ -151,7 +151,7 @@ namespace HealthNut.Repositories
                 UserId = DbUtils.GetInt(reader, "UserId"),
                 Name = DbUtils.GetString(reader, "Name"),
                 CaloriesBurned = DbUtils.GetInt(reader, "CaloriesBurned"),
-                Duration = DbUtils.GetInt(reader, "Duration"),
+                Duration = DbUtils.GetString(reader, "Duration"),
                 Date = DbUtils.GetDateTime(reader, "Date"),
             };
         }
