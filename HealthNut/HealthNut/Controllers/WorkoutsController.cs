@@ -22,7 +22,8 @@ namespace HealthNut.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var workouts = _workoutsRepository.GetAllUserWorkouts();
+            var user = GetCurrentFirebaseUserId();
+            var workouts = _workoutsRepository.GetAllUserWorkouts(user);
             return Ok(workouts);
         }
 

@@ -7,7 +7,7 @@ namespace HealthNut.Repositories
     {
         void AddWorkout(Workouts workout);
         void DeleteWorkout(int workoutId);
-        List<Workouts> GetAllUserWorkouts();
+        List<Workouts> GetAllUserWorkouts(string firebaseUserId);
         Workouts GetWorkoutById(int id);
         void UpdateWorkout(Workouts workout);
     }

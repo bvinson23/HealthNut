@@ -7,7 +7,7 @@ namespace HealthNut.Repositories
     {
         void AddNote(Notes note);
         void DeleteNote(int noteId);
-        List<Notes> GetAllUserNotes();
+        List<Notes> GetAllUserNotes(string firebaseUserId);
         Notes GetNoteById(int id);
         void UpdateNote(Notes note);
     }

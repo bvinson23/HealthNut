@@ -23,7 +23,8 @@ namespace HealthNut.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var notes = _notesRepository.GetAllUserNotes();
+            var user = GetCurrentFirebaseUserId();
+            var notes = _notesRepository.GetAllUserNotes(user);
             return Ok(notes);
         }
 
