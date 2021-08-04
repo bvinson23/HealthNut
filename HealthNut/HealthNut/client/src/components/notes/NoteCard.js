@@ -20,7 +20,7 @@ const Note = ({ note, getNotes }) => {
     };
 
     return (
-        <Toast style={{backgroundColor: "#61B521"}}>
+        <Toast style={{backgroundColor: "#91D260"}}>
             <ToastBody>
                 <div className="NoteList">
                     <Row>Date: {handleDate()}</Row>

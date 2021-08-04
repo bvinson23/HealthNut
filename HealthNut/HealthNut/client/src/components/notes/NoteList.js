@@ -20,7 +20,7 @@ const NoteList = () => {
     }, []);
 
     return (
-            <Toast>
+            <Toast >
                 <ToastHeader color="light" light expand="md">
                     <NavbarBrand tag={RRNavLink} to="/notes">Notes</NavbarBrand>
                     <NavbarToggler onClick={toggle} />
