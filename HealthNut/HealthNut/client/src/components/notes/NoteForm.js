@@ -50,8 +50,10 @@ const AddNewNote = () => {
                 </FormGroup>
             </Form>
             <Button className="article-btn"
+                style={{backgroundColor: "#4472CA"}}
                 onClick={handleSave}>Save</Button>
             <Button className="article-btn"
+                style={{backgroundColor: "#4472CA"}}
                 variant="warning"
                 onClick={handleCancelSave}>Cancel</Button>
         </Container>

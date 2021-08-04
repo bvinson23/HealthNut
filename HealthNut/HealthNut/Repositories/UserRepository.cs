@@ -1,10 +1,6 @@
 ﻿using HealthNut.Models;
 using Microsoft.Extensions.Configuration;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using HealthNut.Repositories;
 using HealthNut.Utils;
 
 namespace HealthNut.Repositories

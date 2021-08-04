@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { editMeal, getMealById, getMealCategories } from "../../modules/mealManager";
-import { Form, FormGroup, Button, Container, Toast, ToastBody } from "reactstrap";
+import { Form, FormGroup, Button, Toast, ToastBody } from "reactstrap";
 
 const EditExistingMeal = () => {
     const [meal, setMeal] = useState({});

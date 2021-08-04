@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardBody, Button, Row, Toast, ToastBody } from "reactstrap";
+import { Button, Row, Toast, ToastBody } from "reactstrap";
 import { useHistory } from "react-router-dom";
 import { deleteWorkout } from "../../modules/workoutManager";
 
@@ -19,7 +19,7 @@ const Workout = ({ workout, getWorkouts }) => {
     };
 
     return (
-        <Toast style={{backgroundColor: "#61B521"}}>
+        <Toast style={{backgroundColor: "#91D260"}}>
             <ToastBody>
                 <div className="WorkoutList">
                     <Row>Date: {handleDate()}</Row>

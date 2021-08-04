@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { addMeal, getMealCategories } from "../../modules/mealManager";
-import { Form, FormGroup, Button, Container, Toast, ToastBody } from "reactstrap";
+import { Form, FormGroup, Button, Toast, ToastBody } from "reactstrap";
 
 const AddNewMeal = () => {
     const [meal, setMeal] = useState({

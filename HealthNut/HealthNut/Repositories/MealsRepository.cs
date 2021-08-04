@@ -2,10 +2,7 @@
 using HealthNut.Utils;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace HealthNut.Repositories
 {
@@ -13,7 +10,7 @@ namespace HealthNut.Repositories
     {
         public MealsRepository(IConfiguration configuration) : base(configuration) { }
 
-        public List<Meals> GetAllUserMeals()
+        public List<Meals> GetAllUserMeals(string firebaseUserId)
         {
             using (var conn = Connection)
             {
@@ -27,9 +24,11 @@ namespace HealthNut.Repositories
                         FROM Meals m
                         JOIN MealCategories mc on mc.Id = m.MealCategoryId
                         JOIN Users u ON u.Id = m.UserId
+                        WHERE u.FirebaseUserId = @firebaseUserId
                         ORDER BY m.mealDate DESC
                     ";
 
+                    DbUtils.AddParameter(cmd, "@FirebaseUserId", firebaseUserId);
                     var reader = cmd.ExecuteReader();
                     var meals = new List<Meals>();
                     while (reader.Read())

@@ -1,14 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink as RRNavLink } from "react-router-dom";
-import {
-    Navbar,
-    NavbarToggler,
-    NavbarBrand,
-    Container,
-    ToastHeader,
-    Toast,
-    ToastBody
-} from "reactstrap";
+import { NavbarToggler, NavbarBrand, ToastHeader, Toast, ToastBody } from "reactstrap";
 import { getAllMeals } from "../../modules/mealManager";
 import Meal from "./MealCard";
 

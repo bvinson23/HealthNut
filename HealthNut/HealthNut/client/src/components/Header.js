@@ -30,6 +30,7 @@ const Header = ({ isLoggedIn }) => {
                   <NavLink tag={RRNavLink} to="/workouts">Workouts</NavLink>
                 </NavItem>
                 <NavItem>
+                  {/* eslint-disable-next-line */}
                   <a aria-current="page" className="nav-link"
                     style={{ cursor: "pointer" }} onClick={logout}>Logout</a>
                 </NavItem>

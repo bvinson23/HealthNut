@@ -2,10 +2,7 @@
 using HealthNut.Utils;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace HealthNut.Repositories
 {
@@ -13,7 +10,7 @@ namespace HealthNut.Repositories
     {
         public WorkoutsRepository(IConfiguration configuration) : base(configuration) { }
 
-        public List<Workouts> GetAllUserWorkouts()
+        public List<Workouts> GetAllUserWorkouts(string firebaseUserId)
         {
             using (var conn = Connection)
             {
@@ -25,9 +22,11 @@ namespace HealthNut.Repositories
                                u.Name AS UserName, u.Email
                         FROM Workouts w
                         JOIN Users u ON u.Id = w.UserId
+                        WHERE u.FirebaseUserId = @FirebaseUserId
                         ORDER BY w.Date DESC
                     ";
 
+                    DbUtils.AddParameter(cmd, "@FirebaseUserId", firebaseUserId);
                     var reader = cmd.ExecuteReader();
                     var workouts = new List<Workouts>();
                     while (reader.Read())
