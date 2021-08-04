@@ -19,7 +19,7 @@ const Meal = ({ meal, getMeals }) => {
     };
 
     return (
-        <Toast style={{backgroundColor: "#61B521"}}>
+        <Toast style={{backgroundColor: "#91D260"}}>
             <ToastBody>
                 <Container>
                     <Row>Meal: {meal.mealCategory.name}</Row>

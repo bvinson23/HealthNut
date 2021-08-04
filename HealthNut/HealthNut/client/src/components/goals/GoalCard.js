@@ -6,7 +6,7 @@ const Goal = ({ user, weight }) => {
     const history = useHistory();
 
     return (
-        <Toast style={{backgroundColor: "#61B521"}}>
+        <Toast style={{backgroundColor: "#91D260"}}>
             <ToastBody>
                 <div className="GoalList">
                     <Row>Weight Goal: {user.goalWeight} lbs</Row>

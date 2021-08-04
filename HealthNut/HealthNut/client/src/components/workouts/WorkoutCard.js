@@ -19,7 +19,7 @@ const Workout = ({ workout, getWorkouts }) => {
     };
 
     return (
-        <Toast style={{backgroundColor: "#61B521"}}>
+        <Toast style={{backgroundColor: "#91D260"}}>
             <ToastBody>
                 <div className="WorkoutList">
                     <Row>Date: {handleDate()}</Row>

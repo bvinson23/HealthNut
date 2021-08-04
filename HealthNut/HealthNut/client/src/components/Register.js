@@ -19,13 +19,13 @@ export default function Register() {
     } else {
       const userProfile = { name, email, goalWeight };
       register(userProfile, password)
-        .then(() => history.push("/"));
+        .then(() => history.push("/dashboard"));
     }
   };
 
   return (
     <div className="p-5 my-5 mx-5 rounded">
-      <Toast style={{ backgroundColor: "#61B521" }}>
+      <Toast style={{ backgroundColor: "#91D260" }}>
         <ToastHeader>
           Register
         </ToastHeader>
