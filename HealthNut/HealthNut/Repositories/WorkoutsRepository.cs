@@ -18,7 +18,7 @@ namespace HealthNut.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT w.Id, w.UserId, w.[Name], w.CaloriesBurned, w.Duration, w.Date,
+                        SELECT TOP 4 w.Id, w.UserId, w.[Name], w.CaloriesBurned, w.Duration, w.Date,
                                u.Name AS UserName, u.Email
                         FROM Workouts w
                         JOIN Users u ON u.Id = w.UserId
