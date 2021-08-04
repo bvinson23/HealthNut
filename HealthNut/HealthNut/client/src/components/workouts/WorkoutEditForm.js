@@ -65,6 +65,16 @@ const EditExistingWorkout = () => {
                             className="form-control"
                             defaultValue={workout.duration} />
                     </FormGroup>
+                    <FormGroup>
+                        <label>Date</label>
+                        <input type="date"
+                            id="date"
+                            onChange={handleInputChange}
+                            required
+                            autoComplete="off"
+                            className="form-control"
+                            defaultValue={workout.date} />
+                    </FormGroup>
                 </Form>
                 <Button className="article-btn"
                     style={{backgroundColor: "#4472CA"}}
