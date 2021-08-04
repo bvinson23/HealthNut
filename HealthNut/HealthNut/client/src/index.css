@@ -12,6 +12,6 @@ code {
     monospace;
 }
 
-.duration-input-button {
-  inline-size: 0%;
+.p-5 {
+  padding: 12rem !important;
 }

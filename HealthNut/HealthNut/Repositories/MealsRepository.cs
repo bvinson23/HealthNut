@@ -25,7 +25,7 @@ namespace HealthNut.Repositories
                         JOIN MealCategories mc on mc.Id = m.MealCategoryId
                         JOIN Users u ON u.Id = m.UserId
                         WHERE u.FirebaseUserId = @firebaseUserId
-                        ORDER BY m.mealDate DESC
+                        ORDER BY m.mealDate DESC, m.Id DESC
                     ";
 
                     DbUtils.AddParameter(cmd, "@FirebaseUserId", firebaseUserId);
