@@ -18,6 +18,7 @@ Start the server from within your IDE
 The server will run at localhost:5001
 Next, navigate to the client directory within HealthNut
 ```bash
+npm install
 npm start
 ```
 The final command will run the app at localhost:3000.
