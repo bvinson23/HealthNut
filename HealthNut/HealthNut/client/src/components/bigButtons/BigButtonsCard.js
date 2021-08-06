@@ -1,19 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Button, Jumbotron, Col } from "reactstrap";
 import { useHistory } from "react-router-dom";
-import { getCurrentUser } from "../../modules/authManager";
 
 const BigButtons = () => {
     const history = useHistory();
-    const [user, setUser] = useState({});
-
-    const getUser = () => {
-        getCurrentUser().then(user => setUser(user))
-    };
-
-    useEffect(() => {
-        getUser();
-    }, []);
 
     return (
         <div>
